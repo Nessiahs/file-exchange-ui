@@ -1,0 +1,62 @@
+import { Router } from "@reach/router";
+import React from "react";
+import { ErrorMessage } from "./components/ErrorMessage";
+import { ExpiredMessage } from "./components/ExpiredMessage";
+import { UserDownloadList } from "./components/UserDownloadList";
+import { Verify } from "./components/Verify";
+import "./config/axios";
+import {
+  ROUTE_ADMIN_CREATE,
+  ROUTE_ADMIN_DOWNLOAD_DETAILS,
+  ROUTE_ADMIN_DOWNLODS,
+  ROUTE_ADMIN_UPLOADS,
+  ROUTE_ADMIN_UPLOADS_DETAILS,
+  ROUTE_ADMIN_USERS,
+  ROUTE_DOWNLOAD_BASE,
+  ROUTE_UPLOAD_BASE,
+  ROUTE_USER_ERROR,
+  ROUTE_USER_EXPIRED,
+} from "./config/routes";
+import { Create } from "./pages/admin/Create";
+import { DownloadsDetails } from "./pages/admin/DownloadDetails";
+import { DownloadList } from "./pages/admin/DownloadList";
+import { UploadDetail } from "./pages/admin/UploadDetail";
+import { UploadList } from "./pages/admin/UploadList";
+import { Users } from "./pages/admin/Users";
+import { UploadPage } from "./pages/upload/UploadPage";
+import { Admin } from "./path/admin";
+function App() {
+  return (
+    <div className=" h-full w-ful">
+      <div className="h-full flex flex-col">
+        <div className="bg-gray-800">Header</div>
+        <div className="flex flex-1 p-1">
+          <Router className="w-full">
+            <ErrorMessage path={ROUTE_USER_ERROR} />
+            <ExpiredMessage path={ROUTE_USER_EXPIRED} />
+            <Verify path={ROUTE_DOWNLOAD_BASE} jobType="download">
+              <UserDownloadList path="/" />
+            </Verify>
+            <Verify path={ROUTE_UPLOAD_BASE} jobType="upload">
+              <UploadPage path="/" />
+            </Verify>
+
+            <Admin path="admin">
+              <Create path={ROUTE_ADMIN_CREATE} />
+              <DownloadList path={ROUTE_ADMIN_DOWNLODS} />
+              <DownloadsDetails
+                path={`${ROUTE_ADMIN_DOWNLOAD_DETAILS}/:token/`}
+              />
+              <UploadList path={ROUTE_ADMIN_UPLOADS} />
+              <UploadDetail path={`${ROUTE_ADMIN_UPLOADS_DETAILS}/:token/`} />
+              <Users path={ROUTE_ADMIN_USERS} />
+            </Admin>
+          </Router>
+        </div>
+        <div className="bg-gray-800">Footer</div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
