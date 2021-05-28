@@ -9,7 +9,7 @@ type TJobListProps = {
 export const JobList: React.FunctionComponent<TJobListProps> = ({
   jobType,
 }) => {
-  const jobs = useJobsByType(jobType);
+  const { jobs } = useJobsByType(jobType);
   return (
     <div className="divide-y">
       <div className="flex cursor-pointer divide-x bg-gray-400">

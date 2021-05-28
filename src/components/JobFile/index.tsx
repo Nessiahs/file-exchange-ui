@@ -38,7 +38,7 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
     hashname: null,
     jobType,
   });
-  const downloadProgress = useDownloadFile(
+  const { progress: downloadProgress } = useDownloadFile(
     forceDownload.token,
     forceDownload.hashname,
     jobType

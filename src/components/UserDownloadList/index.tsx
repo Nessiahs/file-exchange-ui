@@ -4,7 +4,7 @@ import { JobFile } from "../JobFile";
 
 export const UserDownloadList: React.FunctionComponent<RouteComponentProps> =
   () => {
-    const files = useUserFiles("download");
+    const { files } = useUserFiles("download");
     return (
       <>
         <div className="text-lg font-bold border-b-2 border-blue-700">

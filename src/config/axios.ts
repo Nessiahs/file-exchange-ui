@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const key = process.env.REACT_APP_STORAGE_KEY ?? "exchange";
@@ -32,6 +33,11 @@ axios.interceptors.response.use(
   },
   function (error) {
     sessionStorage.removeItem(key);
+
+    if (error.response.data.installed === false) {
+      navigate("/install/");
+    }
+
     return Promise.reject(error);
   }
 );

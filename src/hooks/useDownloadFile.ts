@@ -8,6 +8,7 @@ export const useDownloadFile = (
   jobType?: TJobType
 ) => {
   const [progress, setProgress] = useState<null | number>(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!hashname || !token) {
@@ -39,11 +40,13 @@ export const useDownloadFile = (
         document.body.appendChild(anker);
         anker.click();
         anker.remove();
-      } catch (error) {}
+      } catch (error) {
+        setError(true);
+      }
     };
 
     fetch();
   }, [token, hashname, setProgress, jobType]);
 
-  return progress;
+  return { progress, error };
 };

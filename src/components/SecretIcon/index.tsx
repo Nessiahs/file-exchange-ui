@@ -9,7 +9,6 @@ type TSecretIconProps = {
 export const SecretIcon: React.FunctionComponent<TSecretIconProps> = ({
   secret,
 }) => {
-  console.log(secret);
   return (
     <FontAwesomeIcon
       icon={!secret ? faLockOpen : faLock}
