@@ -1,5 +1,6 @@
-import { Router } from "@reach/router";
+import { Link, Router } from "@reach/router";
 import React from "react";
+import { version } from "../package.json";
 import { ErrorMessage } from "./components/ErrorMessage";
 import { ExpiredMessage } from "./components/ExpiredMessage";
 import { UserDownloadList } from "./components/UserDownloadList";
@@ -17,6 +18,9 @@ import {
   ROUTE_USER_ERROR,
   ROUTE_USER_EXPIRED,
 } from "./config/routes";
+import { Install } from "./install/Install";
+import { InstallCompleted } from "./install/InstallComplete";
+import { VerifyInstall } from "./install/VerifyInstall";
 import { Create } from "./pages/admin/Create";
 import { DownloadsDetails } from "./pages/admin/DownloadDetails";
 import { DownloadList } from "./pages/admin/DownloadList";
@@ -51,9 +55,18 @@ function App() {
               <UploadDetail path={`${ROUTE_ADMIN_UPLOADS_DETAILS}/:token/`} />
               <Users path={ROUTE_ADMIN_USERS} />
             </Admin>
+            <VerifyInstall path="install">
+              <Install path="/" />
+            </VerifyInstall>
+            <InstallCompleted path="/installation/completed/" />
           </Router>
         </div>
-        <div className="bg-gray-800">Footer</div>
+        <div className="bg-gray-800 text-white flex justify-between px-3">
+          <div>&copy; Nessiahs {new Date().getFullYear()}</div>
+          <div>
+            <Link to="/changelog/">Version: {version}</Link>
+          </div>
+        </div>
       </div>
     </div>
   );

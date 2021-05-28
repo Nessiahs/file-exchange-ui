@@ -22,6 +22,7 @@ export const useJobDetail = (
 ) => {
   const [jobData, setJobData] = useState<TJob | null>(null);
   const [jobFiles, setJobFiles] = useState<TFiles[]>([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -33,11 +34,13 @@ export const useJobDetail = (
         const response = await axios.get(`/admin/info/${token}/${jobType}/`);
         setJobData(response.data.info);
         setJobFiles(response.data.files);
-      } catch (error) {}
+      } catch (error) {
+        setError(true);
+      }
     };
 
     fetch();
   }, [token, fetchId, jobType, setJobData, setJobFiles]);
 
-  return { jobData, jobFiles };
+  return { jobData, jobFiles, error };
 };

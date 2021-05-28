@@ -5,6 +5,7 @@ import { TJobType } from "./useJobDetail";
 
 export const useUserFiles = (jobType: TJobType) => {
   const [files, setFiles] = useState<TFiles[]>([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -17,5 +18,5 @@ export const useUserFiles = (jobType: TJobType) => {
     fetch();
   }, [jobType, setFiles]);
 
-  return files;
+  return { files, error };
 };
