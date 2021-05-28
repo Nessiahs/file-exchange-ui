@@ -1,4 +1,5 @@
 import { RouteComponentProps, useNavigate } from "@reach/router";
+import React from "react";
 import { useCheckInstall } from "../hooks/useCheckInstall";
 
 export const VerifyInstall: React.FunctionComponent<RouteComponentProps> = ({

@@ -25,7 +25,7 @@ export const useUpload = (
     const formData = new FormData();
     formData.append("file", file);
     axios.post(url, formData, {
-      onUploadProgress: function (progressEvent) {
+      onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round(
           (progressEvent.loaded * 100) / progressEvent.total
         );

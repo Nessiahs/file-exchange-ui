@@ -4,6 +4,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
+import React from "react";
 
 type TExpireInfo = {
   expires?: string | null;

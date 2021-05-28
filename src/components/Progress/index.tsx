@@ -1,3 +1,5 @@
+import React from "react";
+
 type TProgressProps = {
   message?: string;
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TJobType } from "../../hooks/useJobDetail";
 import { useVerifySecret } from "../../hooks/useVerifySecret";
 
