@@ -24,7 +24,6 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
   hashname,
   jobType,
   showDelete = true,
-
   refresh,
 }) => {
   const [deleteId, setDeleteId] = useState<number | null>(null);
