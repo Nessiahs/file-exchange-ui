@@ -12,7 +12,9 @@ export const useUserFiles = (jobType: TJobType) => {
       try {
         const response = await axios.get(`/${jobType}/file-list/`);
         setFiles(response.data);
-      } catch (error) {}
+      } catch (error) {
+        setError(true);
+      }
     };
 
     fetch();
