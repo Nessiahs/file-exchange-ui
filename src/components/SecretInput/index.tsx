@@ -41,14 +41,16 @@ export const SecretInput: React.FunctionComponent<TSecretProps> = ({
           <div
             className={`text-red-900 text-sm p-2${
               isValid === false ? "" : " invisible"
-            } `}>
+            } `}
+          >
             Bitte überprüfen Sie das Secret
           </div>
           <button
             onClick={() => {
               setSubmit(secret);
             }}
-            disabled={!secret || progress}>
+            disabled={!secret || progress}
+          >
             Anmelden
           </button>
         </div>

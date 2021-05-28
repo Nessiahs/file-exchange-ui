@@ -77,7 +77,8 @@ export const Install: React.FunctionComponent<RouteComponentProps> = () => {
             <ValidIndicator isValid={isEmailValid} />
           </div>
           <div
-            className={`text-sm ${isEmailValid === false ? "" : " invisible"}`}>
+            className={`text-sm ${isEmailValid === false ? "" : " invisible"}`}
+          >
             Bitte Prüfen sie die Email
           </div>
         </div>
@@ -109,9 +110,8 @@ export const Install: React.FunctionComponent<RouteComponentProps> = () => {
         </div>
       </div>
       <div
-        className={`mt-2${
-          isVerifiedPasswordValid === false ? errorStyle : ""
-        }`}>
+        className={`mt-2${isVerifiedPasswordValid === false ? errorStyle : ""}`}
+      >
         <label htmlFor={repeatId}>Passwort wiederholung</label>
         <div className="flex">
           <TogglePasswordType
@@ -138,7 +138,8 @@ export const Install: React.FunctionComponent<RouteComponentProps> = () => {
         <div
           className={`text-sm ${
             isVerifiedPasswordValid === false ? "" : " invisible"
-          }`}>
+          }`}
+        >
           Bitte Prüfen
         </div>
       </div>
@@ -150,7 +151,8 @@ export const Install: React.FunctionComponent<RouteComponentProps> = () => {
           }
           onClick={() => {
             setInstallData({ email, password });
-          }}>
+          }}
+        >
           Einrichten
         </button>
       </div>

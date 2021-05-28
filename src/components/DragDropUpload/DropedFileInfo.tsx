@@ -39,7 +39,8 @@ export const DropedFileInfo: React.FunctionComponent<TFileInfoProps> = ({
           className={`w-8 ml-auto text-center cursor-pointer hover:bg-gray-800 hover:text-white border rounded ${
             upload ? "hidden" : ""
           }`}
-          onClick={() => onDelete(file.name, file.size)}>
+          onClick={() => onDelete(file.name, file.size)}
+        >
           <FontAwesomeIcon icon={faTrashAlt} />
         </div>
 
@@ -47,7 +48,8 @@ export const DropedFileInfo: React.FunctionComponent<TFileInfoProps> = ({
           className={`bg-blue-500 whitespace-nowrap text-white text-xs p-1 text-left transition-all${
             !upload ? " hidden" : ""
           }`}
-          style={{ maxWidth: `${progress}%` }}>
+          style={{ maxWidth: `${progress}%` }}
+        >
           {progress} %
         </div>
       </div>

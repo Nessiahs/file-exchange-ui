@@ -35,7 +35,8 @@ export const NavGroup: React.FunctionComponent<TNavGroup> = ({
             } else if (link) {
               navigate(`/admin/${link}/`);
             }
-          }}>
+          }}
+        >
           <div className="p-1">
             <FontAwesomeIcon icon={icon} />
           </div>
@@ -46,7 +47,8 @@ export const NavGroup: React.FunctionComponent<TNavGroup> = ({
       <div
         ref={ref}
         className="transition-transform overflow-hidden duration-300 ease-linear bg-white"
-        style={{ maxHeight: "999px" }}>
+        style={{ maxHeight: "999px" }}
+      >
         <div> {children}</div>
       </div>
     </>

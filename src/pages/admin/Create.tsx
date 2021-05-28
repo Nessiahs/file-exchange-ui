@@ -74,7 +74,8 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
         <label>Art:</label>
         <select
           value={jobType ?? ""}
-          onChange={(e) => setJobType(e.target.value as TJobType)}>
+          onChange={(e) => setJobType(e.target.value as TJobType)}
+        >
           <option value="">Bitte wählen</option>
           <option value="upload">Upload</option>
           <option value="download">Download</option>

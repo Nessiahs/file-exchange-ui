@@ -40,7 +40,8 @@ export const Login: React.FunctionComponent<TLoginProps> = ({
     <div
       className={`w-96 border rounded mx-auto p-2 mt-10 ${
         hasError ? "border-red-800 text-red-800 bg-red-400" : "border-gray-500"
-      }`}>
+      }`}
+    >
       <form
         onSubmit={(e) => {
           e.stopPropagation();
@@ -49,7 +50,8 @@ export const Login: React.FunctionComponent<TLoginProps> = ({
             return;
           }
           setCredentials({ email, password });
-        }}>
+        }}
+      >
         <div className="font-bold text-lg">Login</div>
         <div>
           <label className="w-full">
@@ -67,7 +69,8 @@ export const Login: React.FunctionComponent<TLoginProps> = ({
           <label
             className={`transition-opacity duration-700 ${
               password.length ? "opacity-100" : "opacity-0"
-            }`}>
+            }`}
+          >
             Passwort
           </label>
           <input
@@ -84,7 +87,8 @@ export const Login: React.FunctionComponent<TLoginProps> = ({
           <button
             type="submit"
             className="w-full ml-0"
-            disabled={!password || !email}>
+            disabled={!password || !email}
+          >
             Login
           </button>
         </div>

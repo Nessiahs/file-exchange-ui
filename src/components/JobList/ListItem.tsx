@@ -28,7 +28,8 @@ export const ListItem: React.FunctionComponent<TJob> = ({
           uri = `/admin/${ROUTE_ADMIN_UPLOADS_DETAILS}/${token}/`;
         }
         navigate(uri);
-      }}>
+      }}
+    >
       <div className="flex-grow p-1">{jobName}</div>
       <div className="w-40 p-1">
         {moment(created).format("DD.MM.YYYY HH:MM")}

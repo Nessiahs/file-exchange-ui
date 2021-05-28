@@ -22,7 +22,8 @@ export const Navigation: React.FunctionComponent<TNavigationProps> = ({
               ? config.submenu.map((menu, i) => (
                   <div
                     className="p-1 hover:bg-gray-400 cursor-pointer"
-                    key={`menu-${menu.link}-${i}`}>
+                    key={`menu-${menu.link}-${i}`}
+                  >
                     <Link to={menu.link}>{menu.text}</Link>
                   </div>
                 ))

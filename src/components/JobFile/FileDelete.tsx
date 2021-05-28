@@ -23,7 +23,8 @@ export const FileDelete: React.FunctionComponent<TFileDeleteProps> = ({
           hover:text-white hover:bg-red-600 ${
             progress === "delete" ? "hidden" : ""
           }`}
-        onClick={onDelete}>
+        onClick={onDelete}
+      >
         <FontAwesomeIcon icon={faTrash} />
       </div>
     </div>

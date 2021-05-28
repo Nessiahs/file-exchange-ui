@@ -77,7 +77,8 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
         <div
           className={`w-6 h-6 rounded border roundet border-green-600 text-green-600 text-center cursor-pointer hover:text-white
           hover:bg-green-600 ${downloadProgress ? " hidden" : ""}`}
-          onClick={() => setForceDownload({ token, hashname, jobType })}>
+          onClick={() => setForceDownload({ token, hashname, jobType })}
+        >
           <FontAwesomeIcon icon={faFileDownload} />
         </div>
         <div className={downloadProgress ? "" : "hidden"}>
