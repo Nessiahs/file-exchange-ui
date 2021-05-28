@@ -4,9 +4,13 @@ import { Progress } from "../Progress";
 
 type TLoginProps = {
   hideLogin: (l: boolean) => void;
+  setAdmin: (l: 0 | 1) => void;
 };
 
-export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
+export const Login: React.FunctionComponent<TLoginProps> = ({
+  hideLogin,
+  setAdmin,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasError, setError] = useState(false);
@@ -14,7 +18,7 @@ export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
     email: null,
     password: null,
   });
-  const { isValid, progress } = useLogin(credentials);
+  const { isValid, progress, isAdmin } = useLogin(credentials);
 
   useEffect(() => {
     if (isValid === true) {
@@ -23,6 +27,10 @@ export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
       setError(true);
     }
   }, [isValid, hideLogin, setError]);
+
+  useEffect(() => {
+    setAdmin(isAdmin);
+  }, [isAdmin, setAdmin]);
 
   if (progress === true) {
     return <Progress message="Anmeldung" />;

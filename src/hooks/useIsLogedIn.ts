@@ -2,12 +2,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 export const useIsLogedIn = (path: string) => {
   const [isLogedIn, setLogedIn] = useState<null | boolean>(null);
-
+  const [forceAdmin, setForceAdmin] = useState<0 | 1>(0);
   useEffect(() => {
     const req = async () => {
       try {
-        await axios.get("/admin/status/");
-
+        const response = await axios.get("/admin/status/");
+        setForceAdmin(response.data.isAdmin);
         setLogedIn(true);
       } catch (e) {
         setLogedIn(false);
@@ -16,5 +16,5 @@ export const useIsLogedIn = (path: string) => {
     req();
   }, [path, setLogedIn]);
 
-  return isLogedIn;
+  return { isLogedIn, forceAdmin };
 };
