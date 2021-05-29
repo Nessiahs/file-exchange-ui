@@ -3,8 +3,16 @@ import { Progress } from "../../components/Progress";
 import { useUserList } from "../../hooks/useUserList";
 import { UserRow } from "./userRow";
 
-export const UserList: React.FunctionComponent = () => {
-  const { userList, progress } = useUserList();
+type TUserlistProps = {
+  renderId: string;
+  onRefresh: () => void;
+};
+
+export const UserList: React.FunctionComponent<TUserlistProps> = ({
+  renderId,
+  onRefresh,
+}) => {
+  const { userList, progress } = useUserList(renderId);
 
   if (progress) {
     return <Progress />;
@@ -22,7 +30,7 @@ export const UserList: React.FunctionComponent = () => {
       </div>
 
       {userList.map((user) => (
-        <UserRow {...user} key={`user-row-${user.id}`} />
+        <UserRow {...user} key={`user-row-${user.id}`} onRefresh={onRefresh} />
       ))}
     </div>
   );

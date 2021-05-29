@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { AddButton } from "../../adminComponents/AddButton";
 import { Backdrop } from "../../adminComponents/Backdrop";
 import { CreateUser } from "../../adminComponents/CreateUser";
-import { CreateUserButtons } from "../../adminComponents/CreateUserButtons";
+import { CreateUserButtons } from "../../adminComponents/CreateUser/CreateUserButtons";
 import { Modal } from "../../adminComponents/Modal";
 import { PageHeader } from "../../adminComponents/PageHeader";
 import { UserList } from "../../adminComponents/UserList";
@@ -16,10 +16,18 @@ export const Users: React.FunctionComponent<RouteComponentProps> = () => {
     <div>
       <Backdrop isOpen={addUser} closeOnClick={() => setAddUser(false)}>
         <Modal
-          onClose={() => setAddUser(false)}
+          onClose={() => {
+            setAddUser(false);
+          }}
           header="Neuen Benutzer anlegen">
           <CreateUser>
-            <CreateUserButtons onClose={() => setAddUser(false)} />
+            <CreateUserButtons
+              onClose={() => setAddUser(false)}
+              onSuccess={() => {
+                setAddUser(false);
+                setRenderId(uuid());
+              }}
+            />
           </CreateUser>
         </Modal>
       </Backdrop>
@@ -27,7 +35,7 @@ export const Users: React.FunctionComponent<RouteComponentProps> = () => {
         <AddButton onClick={() => setAddUser(true)} />
       </PageHeader>
 
-      <UserList />
+      <UserList renderId={renderId} onRefresh={() => setRenderId(uuid())} />
     </div>
   );
 };

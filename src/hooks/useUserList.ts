@@ -14,6 +14,7 @@ export const useUserList = (fetchId = "") => {
   const [progress, setProgress] = useState(false);
 
   useEffect(() => {
+    setUserList([]);
     setProgress(true);
     const fetch = async () => {
       try {

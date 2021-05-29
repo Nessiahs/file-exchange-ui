@@ -1,7 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Progress } from "../../components/Progress";
 import { emailCheck, passwordStrength } from "../../config/checks";
 import { errorStyle } from "../../config/classNames";
+import { useVerifyEmail } from "../../hooks/useVerifyEmail";
 import { uuid } from "../../services/uuid";
 import { TogglePasswordType } from "./TogglePasswordType";
 import { ValidIndicator } from "./ValidIndicator";
@@ -28,6 +29,7 @@ export const CreateUser: React.FunctionComponent<TCreateUserProps> = ({
   children,
 }) => {
   const [email, setEmail] = useState("");
+  const [toValidate, setToValidate] = useState<string | null>(null);
   const [isAdmin, setAdmin] = useState<0 | 1>(0);
   const [isEmailValid, setEmailValid] = useState<null | boolean>(null);
   const [password, setPassword] = useState("");
@@ -45,125 +47,143 @@ export const CreateUser: React.FunctionComponent<TCreateUserProps> = ({
   const [progressMessage, setProgressMessage] = useState<React.ReactNode>(null);
   const [progress, setProgress] = useState(false);
 
-  if (progress === true) {
-    return <Progress>{progressMessage}</Progress>;
-  }
+  const emailChecked = useVerifyEmail(toValidate);
+
+  useEffect(() => {
+    if (emailChecked === null) {
+      return;
+    }
+    setEmailValid(emailChecked);
+  }, [emailChecked, setEmailValid]);
 
   return (
     <>
-      <div>
-        <div className={`mt-2 p-1${isEmailValid === false ? errorStyle : ""}`}>
-          <label htmlFor={emailId}>EMail</label>
-          <div className="flex">
-            <input
-              id={emailId}
-              type="email"
-              className="w-full"
-              autoFocus
-              placeholder="examplte@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => {
-                if (e.target.value === "") {
-                  return;
-                }
-                setEmailValid(emailCheck.test(e.target.value));
-              }}
-            />
-            <ValidIndicator isValid={isEmailValid} />
-          </div>
+      <Progress className={!progress ? "hidden" : ""}>
+        {progressMessage}
+      </Progress>
+      <div className={progress ? "hidden" : ""}>
+        <div>
           <div
-            className={`text-sm ${isEmailValid === false ? "" : " invisible"}`}>
-            Bitte Prüfen sie die Email
+            className={`mt-2 p-1${isEmailValid === false ? errorStyle : ""}`}>
+            <label htmlFor={emailId}>EMail</label>
+            <div className="flex">
+              <input
+                id={emailId}
+                type="email"
+                className="w-full"
+                autoFocus
+                placeholder="examplte@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={(e) => {
+                  if (e.target.value === "") {
+                    return;
+                  }
+                  if (!emailCheck.test(e.target.value)) {
+                    return setEmailValid(false);
+                  }
+                  setToValidate(e.target.value);
+                }}
+              />
+              <ValidIndicator isValid={isEmailValid} />
+            </div>
+            <div
+              className={`text-sm ${
+                isEmailValid === false ? "" : " invisible"
+              }`}>
+              {emailChecked === false
+                ? "Es gibt bereits einen User mit dieser Email"
+                : "Bitte Prüfen sie die Email"}
+            </div>
           </div>
-        </div>
-        <div className={forceAdmin ? "hidden" : ""}>
-          <label>Administrator</label>
-          <select
-            value={isAdmin}
-            onChange={(e) => {
-              const val = Number(e.target.value);
-              if (val === 0 || val === 1) {
-                setAdmin(val);
-              }
-            }}>
-            <option value={0}>User</option>
-            <option value={1}>Administrator</option>
-          </select>
-        </div>
-        <div className={`mt-2${isPasswordValid === false ? errorStyle : ""}`}>
-          <label htmlFor={passwordId}>Passwort </label>
-          <div className="flex">
-            <TogglePasswordType
-              type={passwordType}
-              toggleType={(t) => setPasswordType(t)}
-            />
-            <input
-              id={passwordId}
-              type={passwordType}
-              className="w-full border-l-0"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onBlur={(e) => {
-                if (e.target.value === "") {
-                  return;
+          <div className={forceAdmin ? "hidden" : ""}>
+            <label>Administrator</label>
+            <select
+              value={isAdmin}
+              onChange={(e) => {
+                const val = Number(e.target.value);
+                if (val === 0 || val === 1) {
+                  setAdmin(val);
                 }
-                setPasswordValid(passwordStrength.test(e.target.value));
-              }}
-            />
-            <ValidIndicator isValid={isPasswordValid} />
+              }}>
+              <option value={0}>User</option>
+              <option value={1}>Administrator</option>
+            </select>
           </div>
-          <div className={`text-sm`}>
-            min 8 Zeichen und ein Großbuchstabe und eine Zahl
+          <div className={`mt-2${isPasswordValid === false ? errorStyle : ""}`}>
+            <label htmlFor={passwordId}>Passwort </label>
+            <div className="flex">
+              <TogglePasswordType
+                type={passwordType}
+                toggleType={(t) => setPasswordType(t)}
+              />
+              <input
+                id={passwordId}
+                type={passwordType}
+                className="w-full border-l-0"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onBlur={(e) => {
+                  if (e.target.value === "") {
+                    return;
+                  }
+                  setPasswordValid(passwordStrength.test(e.target.value));
+                }}
+              />
+              <ValidIndicator isValid={isPasswordValid} />
+            </div>
+            <div className={`text-sm`}>
+              min 8 Zeichen und ein Großbuchstabe und eine Zahl
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        className={`mt-2${
-          isVerifiedPasswordValid === false ? errorStyle : ""
-        }`}>
-        <label htmlFor={repeatId}>Passwort wiederholung</label>
-        <div className="flex">
-          <TogglePasswordType
-            type={passwordRepeatType}
-            toggleType={(t) => setPasswordRepeatType(t)}
-            disabled={!isPasswordValid}
-          />
-          <input
-            id={repeatId}
-            type={passwordRepeatType}
-            disabled={!isPasswordValid}
-            className="w-full border-l-0"
-            value={passwordRepeat}
-            onChange={(e) => setPasswordRepeat(e.target.value)}
-            onBlur={(e) => {
-              if (e.target.value === "") {
-                return;
-              }
-              setVerifiedPasswordValid(e.target.value === password);
-            }}
-          />
-          <ValidIndicator isValid={isVerifiedPasswordValid} />
         </div>
         <div
-          className={`text-sm ${
-            isVerifiedPasswordValid === false ? "" : " invisible"
+          className={`mt-2${
+            isVerifiedPasswordValid === false ? errorStyle : ""
           }`}>
-          Bitte Prüfen
+          <label htmlFor={repeatId}>Passwort wiederholung</label>
+          <div className="flex">
+            <TogglePasswordType
+              type={passwordRepeatType}
+              toggleType={(t) => setPasswordRepeatType(t)}
+              disabled={!isPasswordValid}
+            />
+            <input
+              id={repeatId}
+              type={passwordRepeatType}
+              disabled={!isPasswordValid}
+              className="w-full border-l-0"
+              value={passwordRepeat}
+              onChange={(e) => setPasswordRepeat(e.target.value)}
+              onBlur={(e) => {
+                if (e.target.value === "") {
+                  return;
+                }
+                setVerifiedPasswordValid(e.target.value === password);
+              }}
+            />
+            <ValidIndicator isValid={isVerifiedPasswordValid} />
+          </div>
+          <div
+            className={`text-sm ${
+              isVerifiedPasswordValid === false ? "" : " invisible"
+            }`}>
+            Bitte Prüfen
+          </div>
+          <CreateUserContext.Provider
+            value={{
+              email,
+              password,
+              isAdmin,
+              isEmailValid,
+              isPasswordValid,
+              isVerifiedPasswordValid,
+              setProgress,
+              setProgressMessage,
+            }}>
+            {children}
+          </CreateUserContext.Provider>
         </div>
-        <CreateUserContext.Provider
-          value={{
-            email,
-            password,
-            isAdmin,
-            isEmailValid,
-            isPasswordValid,
-            isVerifiedPasswordValid,
-            setProgress,
-            setProgressMessage,
-          }}>
-          {children}
-        </CreateUserContext.Provider>
       </div>
     </>
   );
