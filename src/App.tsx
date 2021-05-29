@@ -31,7 +31,7 @@ import { UploadPage } from "./pages/upload/UploadPage";
 import { Admin } from "./path/admin";
 function App() {
   return (
-    <div className=" h-full w-ful">
+    <div className=" h-full w-full">
       <div className="h-full flex flex-col">
         <div className="bg-gray-800">Header</div>
         <div className="flex flex-1 p-1">

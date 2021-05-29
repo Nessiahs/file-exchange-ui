@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TFolderResponse } from "./useMyUploads";
-
+export type TFolderResponse = {
+  id: number;
+  token: string;
+  fileCount: number;
+  description: string;
+};
 export const useAllUploads = (id: string | null) => {
   const [uploads, setUploads] = useState<TFolderResponse[]>([]);
 

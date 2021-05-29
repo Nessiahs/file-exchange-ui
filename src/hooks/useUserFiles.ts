@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TFiles } from "./useGetFilesByToken";
-import { TJobType } from "./useJobDetail";
+import { TFiles, TJobType } from "./useJobDetail";
 
 export const useUserFiles = (jobType: TJobType) => {
   const [files, setFiles] = useState<TFiles[]>([]);

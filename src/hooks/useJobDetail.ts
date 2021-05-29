@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { TFiles } from "./useGetFilesByToken";
 export type TJob = {
   id?: number;
   jobType: TJobType;
@@ -11,6 +10,15 @@ export type TJob = {
   token: string;
   createdBy: number;
   files: number;
+};
+
+export type TFiles = {
+  id: number;
+  token: string;
+  filename: string;
+  hashname: string;
+  created_at: string;
+  size: number;
 };
 
 export type TJobType = "upload" | "download";
