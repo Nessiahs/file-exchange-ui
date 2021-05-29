@@ -1,7 +1,7 @@
 import { RouteComponentProps, useLocation } from "@reach/router";
 import React, { useEffect, useState } from "react";
+import { Navigation } from "../adminComponents/Navigation";
 import { Login } from "../components/Login";
-import { Navigation } from "../components/Navigation";
 import { useIsLogedIn } from "../hooks/useIsLogedIn";
 
 export const Admin: React.FunctionComponent<RouteComponentProps> = ({

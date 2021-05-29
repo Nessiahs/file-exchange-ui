@@ -1,8 +1,8 @@
 import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
-import { DisplayLink } from "../../components/DisplayLink";
-import { Loader } from "../../components/Loader";
-import { PageHeader } from "../../components/PageHeader";
+import { DisplayLink } from "../../adminComponents/DisplayLink";
+import { PageHeader } from "../../adminComponents/PageHeader";
+import { Progress } from "../../components/Progress";
 import { TJobData, useCreateJob } from "../../hooks/useCreateJob";
 
 type TJobType = TJobData["jobType"] | null;
@@ -63,7 +63,7 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
   }, [jobType, jobName, setDisabled]);
 
   if (progress === true) {
-    return <Loader text="Erstelle Job" />;
+    return <Progress message="Erstelle Job" />;
   }
 
   return (
@@ -74,8 +74,7 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
         <label>Art:</label>
         <select
           value={jobType ?? ""}
-          onChange={(e) => setJobType(e.target.value as TJobType)}
-        >
+          onChange={(e) => setJobType(e.target.value as TJobType)}>
           <option value="">Bitte wählen</option>
           <option value="upload">Upload</option>
           <option value="download">Download</option>

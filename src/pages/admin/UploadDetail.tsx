@@ -1,8 +1,8 @@
 import { RouteComponentProps, useParams } from "@reach/router";
 import React, { useState } from "react";
+import { JobInfo } from "../../adminComponents/JobInfo";
+import { PageHeader } from "../../adminComponents/PageHeader";
 import { JobFile } from "../../components/JobFile";
-import { JobInfo } from "../../components/JobInfo";
-import { PageHeader } from "../../components/PageHeader";
 import { useJobDetail } from "../../hooks/useJobDetail";
 import { uuid } from "../../services/uuid";
 

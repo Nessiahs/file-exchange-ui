@@ -1,5 +1,5 @@
 export const ROUTE_ADMIN_HOME = "admin";
-export const ROUTE_ADMIN_USERS = "user";
+export const ROUTE_ADMIN_USERS = "system/user";
 export const ROUTE_ADMIN_CREATE = "create";
 export const ROUTE_ADMIN_DOWNLOAD_DETAILS = "download-details";
 export const ROUTE_ADMIN_DOWNLODS = "downloads";

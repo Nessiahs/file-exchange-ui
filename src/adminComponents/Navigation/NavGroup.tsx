@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "@reach/router";
 import React, { createRef, useEffect, useState } from "react";
 import { TNavGroup } from "../../config/adminNavigation";
+import { hover } from "../../config/classNames";
 import { GroupToggle } from "./GroupToggle";
 
 export const NavGroup: React.FunctionComponent<TNavGroup> = ({
@@ -28,15 +29,14 @@ export const NavGroup: React.FunctionComponent<TNavGroup> = ({
     <>
       <div>
         <div
-          className={`flex bg-gray-600 text-white cursor-pointer hover:bg-gray-900`}
+          className={`flex bg-gray-600 text-white cursor-pointer ${hover}`}
           onClick={() => {
             if (children) {
               setOpen(!isOpen);
             } else if (link) {
               navigate(`/admin/${link}/`);
             }
-          }}
-        >
+          }}>
           <div className="p-1">
             <FontAwesomeIcon icon={icon} />
           </div>
@@ -47,8 +47,7 @@ export const NavGroup: React.FunctionComponent<TNavGroup> = ({
       <div
         ref={ref}
         className="transition-transform overflow-hidden duration-300 ease-linear bg-white"
-        style={{ maxHeight: "999px" }}
-      >
+        style={{ maxHeight: "999px" }}>
         <div> {children}</div>
       </div>
     </>

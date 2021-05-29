@@ -1,11 +1,10 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { DeleteButton } from "../../adminComponents/DeleteButton";
 
 type TFileDeleteProps = {
   progress: "delete" | "done" | "error" | null;
-  onDelete: () => void;
   show: boolean;
+  onDelete: () => void;
 };
 
 export const FileDelete: React.FunctionComponent<TFileDeleteProps> = ({
@@ -18,15 +17,9 @@ export const FileDelete: React.FunctionComponent<TFileDeleteProps> = ({
   }
   return (
     <div className="w-12 flex justify-center">
-      <div
-        className={`w-6 h-6 border rounded border-red-600 text-red-600 text-center cursor-pointer
-          hover:text-white hover:bg-red-600 ${
-            progress === "delete" ? "hidden" : ""
-          }`}
-        onClick={onDelete}
-      >
-        <FontAwesomeIcon icon={faTrash} />
-      </div>
+      <span className={progress === "delete" ? "hidden" : ""}>
+        <DeleteButton onClick={onDelete} />
+      </span>
     </div>
   );
 };
