@@ -48,13 +48,13 @@ export const CreateUserButtons: React.FunctionComponent<TCreateUserButtonsProps>
       }
 
       onSuccess();
-    }, [success, setProgress]);
+    }, [success, setProgress, onSuccess]);
 
     useEffect(() => {
       if (setProgressMessage) {
         setProgressMessage(<>Benuter {email} wird angelegt!</>);
       }
-    }, [setProgressMessage]);
+    }, [setProgressMessage, email]);
 
     return (
       <div className="text-right pr-6">

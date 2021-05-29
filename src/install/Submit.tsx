@@ -38,7 +38,7 @@ export const Submit = () => {
     }
 
     setInstallData({ email: "", password: "" });
-  }, [progress]);
+  }, [progress, setProgress]);
   return (
     <div className="mt-2 text-right">
       <button
