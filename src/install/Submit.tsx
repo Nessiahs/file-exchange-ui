@@ -18,15 +18,17 @@ export const Submit = () => {
   });
   const { progress } = useInstall(installData);
 
-  if (setProgressMessage) {
-    setProgressMessage(
-      <>
-        Datenbank und Benutzer werden eingerichtet.
-        <br />
-        Dies kann einen Augenblick dauern
-      </>
-    );
-  }
+  useEffect(() => {
+    if (setProgressMessage) {
+      setProgressMessage(
+        <>
+          Datenbank und Benutzer werden eingerichtet.
+          <br />
+          Dies kann einen Augenblick dauern
+        </>
+      );
+    }
+  }, [setProgressMessage]);
 
   useEffect(() => {
     if (setProgress) {

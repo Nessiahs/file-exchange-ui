@@ -81,7 +81,10 @@ export const CreateUser: React.FunctionComponent<TCreateUserProps> = ({
                   }
                   if (!emailCheck.test(e.target.value)) {
                     return setEmailValid(false);
+                  } else if (forceAdmin) {
+                    return setEmailValid(true);
                   }
+
                   setToValidate(e.target.value);
                 }}
               />
