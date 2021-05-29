@@ -18,7 +18,7 @@ type TJobFileProps = {
 export const JobFile: React.FunctionComponent<TJobFileProps> = ({
   id,
   filename,
-  created: created_at,
+  created,
   size,
   token,
   hashname,
@@ -63,9 +63,7 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
   return (
     <div className={`flex p-2 ${hover}`}>
       <div className="flex-grow">{filename}</div>
-      <div className="w-32">
-        {moment(created_at).format("DD.MM.YYYY mm:HH")}
-      </div>
+      <div className="w-32">{moment(created).format("DD.MM.YYYY mm:HH")}</div>
       <div className="w-20 text-right pr-2">{prettyBytes(size)}</div>
       <FileDelete
         onDelete={() => setDeleteId(id)}
