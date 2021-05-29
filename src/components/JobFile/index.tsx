@@ -18,7 +18,7 @@ type TJobFileProps = {
 export const JobFile: React.FunctionComponent<TJobFileProps> = ({
   id,
   filename,
-  created_at,
+  created: created_at,
   size,
   token,
   hashname,

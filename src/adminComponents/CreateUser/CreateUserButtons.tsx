@@ -65,11 +65,9 @@ export const CreateUserButtons: React.FunctionComponent<TCreateUserButtonsProps>
             !isEmailValid || !isPasswordValid || !isVerifiedPasswordValid
           }
           onClick={() => {
-            console.log("klick", email, password, isAdmin);
             if (!email || !password || isAdmin === undefined) {
               return;
             }
-            console.log("WOKS");
             setData({ email, password, isAdmin });
           }}>
           Anlegen

@@ -17,7 +17,7 @@ export type TFiles = {
   token: string;
   filename: string;
   hashname: string;
-  created_at: string;
+  created: string;
   size: number;
 };
 

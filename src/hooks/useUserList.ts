@@ -21,7 +21,9 @@ export const useUserList = (fetchId = "") => {
         const response = await axios.get("/admin/users/");
         setUserList(response.data);
         setProgress(false);
-      } catch (error) {}
+      } catch (error) {
+        setProgress(false);
+      }
     };
 
     fetch();
