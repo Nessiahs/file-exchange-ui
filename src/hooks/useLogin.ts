@@ -9,6 +9,7 @@ export type TCredentials = {
 export const useLogin = (credentials: TCredentials) => {
   const [isValid, setValid] = useState<boolean | null>(null);
   const [progress, setProgress] = useState(false);
+  const [isAdmin, setAdmin] = useState<0 | 1>(0);
   const { email, password } = credentials;
 
   useEffect(() => {
@@ -18,10 +19,11 @@ export const useLogin = (credentials: TCredentials) => {
     setProgress(true);
     const fetch = async () => {
       try {
-        await axios.post("/admin/login/", {
+        const response = await axios.post("/admin/login/", {
           user: email,
           password,
         });
+        setAdmin(response.data.isAdmin);
         setValid(true);
       } catch (error) {
         setValid(false);
@@ -31,7 +33,7 @@ export const useLogin = (credentials: TCredentials) => {
     };
 
     fetch();
-  }, [email, password, setProgress, setValid]);
+  }, [email, password, setProgress, setValid, setAdmin]);
 
-  return { isValid, progress };
+  return { isValid, progress, isAdmin };
 };

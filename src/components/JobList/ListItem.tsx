@@ -1,13 +1,14 @@
 import { useNavigate } from "@reach/router";
 import moment from "moment";
 import React from "react";
+import { ExpireInfo } from "../../adminComponents/ExpireInfo";
+import { SecretIcon } from "../../adminComponents/SecretIcon";
+import { hover } from "../../config/classNames";
 import {
   ROUTE_ADMIN_DOWNLOAD_DETAILS,
   ROUTE_ADMIN_UPLOADS_DETAILS,
 } from "../../config/routes";
 import { TJob } from "../../hooks/useJobDetail";
-import { ExpireInfo } from "../ExpireInfo";
-import { SecretIcon } from "../SecretIcon";
 
 export const ListItem: React.FunctionComponent<TJob> = ({
   jobName,
@@ -21,7 +22,7 @@ export const ListItem: React.FunctionComponent<TJob> = ({
   const navigate = useNavigate();
   return (
     <div
-      className="flex cursor-pointer hover:bg-blue-500 divide-x"
+      className={`flex cursor-pointer ${hover} divide-x`}
       onClick={() => {
         let uri = `/admin/${ROUTE_ADMIN_DOWNLOAD_DETAILS}/${token}/`;
         if (jobType === "upload") {

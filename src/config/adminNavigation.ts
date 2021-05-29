@@ -25,6 +25,7 @@ export type TNavSubmenu = {
 export type TAdminNavigation = {
   group: TNavGroup;
   submenu?: TNavSubmenu[];
+  needAdmin?: true;
 };
 
 export const adminNavigation: TAdminNavigation[] = [
@@ -50,6 +51,7 @@ export const adminNavigation: TAdminNavigation[] = [
     },
   },
   {
+    needAdmin: true,
     group: {
       title: "Einstellungen",
       icon: faCogs,

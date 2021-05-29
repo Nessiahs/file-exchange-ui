@@ -16,7 +16,8 @@ export const TogglePasswordType: React.FunctionComponent<TTogglePasswordTypeProp
         }`}
         onClick={() => {
           toggleType(type === "password" ? "text" : "password");
-        }}>
+        }}
+      >
         <FontAwesomeIcon
           icon={type === "password" ? faEyeSlash : faEye}
           className="absolute top-1/2 left-1/2 block"

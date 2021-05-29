@@ -88,7 +88,8 @@ export const DragDropUpload: React.FunctionComponent<TDropAreaProps> = ({
           e.preventDefault();
           setClassName(defaultClassName);
         }}
-        className={`w-full border-gray-700 border-dashed border-2 rounded h-48 ${className}`}>
+        className={`w-full border-gray-700 border-dashed border-2 rounded h-48 ${className}`}
+      >
         <div className="text-center text-xl mt-14 font-bold">
           {upload ? "Dateien werden hochgeladen" : "Dateien hier ablegen"}
         </div>
@@ -119,7 +120,8 @@ export const DragDropUpload: React.FunctionComponent<TDropAreaProps> = ({
             if (uploadFiles.length && !upload) {
               setUpload(true);
             }
-          }}>
+          }}
+        >
           <div className="w-8 h-8 text-center mr-2">
             <FontAwesomeIcon icon={faUpload} />
           </div>

@@ -1,7 +1,7 @@
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useState } from "react";
+import { DeleteButton } from "../../adminComponents/DeleteButton";
+import { hover } from "../../config/classNames";
 import { useUpload } from "../../hooks/useUpload";
 
 type TFileInfoProps = {
@@ -31,16 +31,12 @@ export const DropedFileInfo: React.FunctionComponent<TFileInfoProps> = ({
   }, [progress, done, onFinish]);
 
   return (
-    <div className="flex p-2">
+    <div className={`flex p-2 ${hover}`}>
       <div className="flex-1">{file.name}</div>
       <div className="w-24">{prettyBytes(file.size)}</div>
       <div className={`w-1/4 text-right border$`}>
-        <div
-          className={`w-8 ml-auto text-center cursor-pointer hover:bg-gray-800 hover:text-white border rounded ${
-            upload ? "hidden" : ""
-          }`}
-          onClick={() => onDelete(file.name, file.size)}>
-          <FontAwesomeIcon icon={faTrashAlt} />
+        <div className={`justify-end flex${upload ? " hidden" : ""}`}>
+          <DeleteButton onClick={() => onDelete(file.name, file.size)} />
         </div>
 
         <div
