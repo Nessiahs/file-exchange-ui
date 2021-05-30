@@ -2,9 +2,9 @@ import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import { DisplayLink } from "../../adminComponents/DisplayLink";
 import { PageHeader } from "../../adminComponents/PageHeader";
+import { Tile } from "../../adminComponents/Tile";
 import { Progress } from "../../components/Progress";
 import { TJobData, useCreateJob } from "../../hooks/useCreateJob";
-import { Tile } from "../../Tile";
 
 type TJobType = TJobData["jobType"] | null;
 

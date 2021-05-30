@@ -2,11 +2,11 @@ import { RouteComponentProps, useParams } from "@reach/router";
 import React, { useState } from "react";
 import { JobInfo } from "../../adminComponents/JobInfo";
 import { PageHeader } from "../../adminComponents/PageHeader";
+import { Tile } from "../../adminComponents/Tile";
 import { DragDropUpload } from "../../components/DragDropUpload";
 import { JobFile } from "../../components/JobFile";
 import { useJobDetail } from "../../hooks/useJobDetail";
 import { uuid } from "../../services/uuid";
-import { Tile } from "../../Tile";
 
 export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
   () => {
