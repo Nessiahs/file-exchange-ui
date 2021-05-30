@@ -3,6 +3,7 @@ import React from "react";
 import { version } from "../package.json";
 import { ErrorMessage } from "./components/ErrorMessage";
 import { ExpiredMessage } from "./components/ExpiredMessage";
+import { Header } from "./components/Header";
 import { UserDownloadList } from "./components/UserDownloadList";
 import { Verify } from "./components/Verify";
 import "./config/axios";
@@ -32,15 +33,19 @@ import { Admin } from "./path/admin";
 function App() {
   return (
     <div className=" h-full w-full">
-      <div className="h-full flex flex-col">
-        <div className="bg-gray-800">Header</div>
-        <div className="flex flex-1 p-1">
+      <div className="h-full flex flex-col konny">
+        <Router className="bg-gray-800">
+          <Header default />
+        </Router>
+        <div className="flex flex-1 p-1 moin">
           <Router className="w-full">
             <ErrorMessage path={ROUTE_USER_ERROR} />
             <ExpiredMessage path={ROUTE_USER_EXPIRED} />
+
             <Verify path={ROUTE_DOWNLOAD_BASE} jobType="download">
               <UserDownloadList path="/" />
             </Verify>
+
             <Verify path={ROUTE_UPLOAD_BASE} jobType="upload">
               <UploadPage path="/" />
             </Verify>
@@ -55,9 +60,11 @@ function App() {
               <UploadDetail path={`${ROUTE_ADMIN_UPLOADS_DETAILS}/:token/`} />
               <Users path={ROUTE_ADMIN_USERS} />
             </Admin>
+
             <VerifyInstall path="install">
               <Install path="/" />
             </VerifyInstall>
+
             <InstallCompleted path="/installation/completed/" />
           </Router>
         </div>

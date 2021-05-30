@@ -1,8 +1,8 @@
 import { navigate } from "@reach/router";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { STORAGE_KEY } from "./storage";
 
-const key = process.env.REACT_APP_STORAGE_KEY ?? "exchange";
-let token: string | null = sessionStorage.getItem(key);
+let token: string | null = sessionStorage.getItem(STORAGE_KEY);
 
 axios.interceptors.request.use(
   (config: AxiosRequestConfig): AxiosRequestConfig => {
@@ -25,14 +25,14 @@ axios.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => {
     token = response.headers["x-jwt-token"];
     if (token) {
-      sessionStorage.setItem(key, token);
+      sessionStorage.setItem(STORAGE_KEY, token);
     } else {
-      sessionStorage.removeItem(key);
+      sessionStorage.removeItem(STORAGE_KEY);
     }
     return response;
   },
   function (error) {
-    sessionStorage.removeItem(key);
+    sessionStorage.removeItem(STORAGE_KEY);
 
     if (error.response.data.installed === false) {
       navigate("/install/");
