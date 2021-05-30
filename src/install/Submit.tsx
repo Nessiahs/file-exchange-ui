@@ -18,15 +18,17 @@ export const Submit = () => {
   });
   const { progress } = useInstall(installData);
 
-  if (setProgressMessage) {
-    setProgressMessage(
-      <>
-        Datenbank und Benutzer werden eingerichtet.
-        <br />
-        Dies kann einen Augenblick dauern
-      </>
-    );
-  }
+  useEffect(() => {
+    if (setProgressMessage) {
+      setProgressMessage(
+        <>
+          Datenbank und Benutzer werden eingerichtet.
+          <br />
+          Dies kann einen Augenblick dauern
+        </>
+      );
+    }
+  }, [setProgressMessage]);
 
   useEffect(() => {
     if (setProgress) {
@@ -39,6 +41,7 @@ export const Submit = () => {
 
     setInstallData({ email: "", password: "" });
   }, [progress, setProgress]);
+
   return (
     <div className="mt-2 text-right">
       <button
