@@ -14,11 +14,13 @@ export const AdminHome: React.FunctionComponent<RouteComponentProps> = () => {
 
   const myData: { value: number; label: string; color: string }[] = [];
   for (const f in jobs.byJob) {
-    myData.push({
-      value: jobs.byJob[f],
-      label: prettyBytes(jobs.byJob[f]),
-      color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
-    });
+    if (jobs.byJob.hasOwnProperty(f)) {
+      myData.push({
+        value: jobs.byJob[f],
+        label: prettyBytes(jobs.byJob[f]),
+        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+      });
+    }
   }
   const shiftSize = 7;
   return (
