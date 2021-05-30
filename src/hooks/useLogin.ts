@@ -25,6 +25,7 @@ export const useLogin = (credentials: TCredentials) => {
         });
         setAdmin(response.data.isAdmin);
         setValid(true);
+        window.location.reload();
       } catch (error) {
         setValid(false);
       } finally {
