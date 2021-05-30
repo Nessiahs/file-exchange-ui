@@ -1,6 +1,7 @@
 import {
   faCogs,
   faDownload,
+  faHome,
   faUpload,
   faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
@@ -29,6 +30,13 @@ export type TAdminNavigation = {
 };
 
 export const adminNavigation: TAdminNavigation[] = [
+  {
+    group: {
+      title: "Home",
+      icon: faHome,
+      link: "/",
+    },
+  },
   {
     group: {
       title: "Erstellen",

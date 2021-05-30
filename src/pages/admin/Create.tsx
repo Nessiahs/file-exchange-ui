@@ -2,6 +2,7 @@ import { RouteComponentProps } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import { DisplayLink } from "../../adminComponents/DisplayLink";
 import { PageHeader } from "../../adminComponents/PageHeader";
+import { Tile } from "../../adminComponents/Tile";
 import { Progress } from "../../components/Progress";
 import { TJobData, useCreateJob } from "../../hooks/useCreateJob";
 
@@ -67,7 +68,7 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
   }
 
   return (
-    <>
+    <Tile>
       <PageHeader title={`${title} einrichten`} />
       <DisplayLink link={link} onClose={() => resetJobData()} />
       <div className="py-2">
@@ -121,6 +122,6 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
           Erstellen
         </button>
       </div>
-    </>
+    </Tile>
   );
 };

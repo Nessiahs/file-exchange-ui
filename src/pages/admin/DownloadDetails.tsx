@@ -2,6 +2,7 @@ import { RouteComponentProps, useParams } from "@reach/router";
 import React, { useState } from "react";
 import { JobInfo } from "../../adminComponents/JobInfo";
 import { PageHeader } from "../../adminComponents/PageHeader";
+import { Tile } from "../../adminComponents/Tile";
 import { DragDropUpload } from "../../components/DragDropUpload";
 import { JobFile } from "../../components/JobFile";
 import { useJobDetail } from "../../hooks/useJobDetail";
@@ -20,7 +21,7 @@ export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
     };
 
     return (
-      <>
+      <Tile>
         <PageHeader title="Dateien für Kunden hinterlegen" />
         <JobInfo data={jobData} />
         <div>Vorhandene Dateien zum Download</div>
@@ -35,6 +36,6 @@ export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
         </div>
 
         <DragDropUpload uploadType="admin" refresh={() => refresh()} />
-      </>
+      </Tile>
     );
   };
