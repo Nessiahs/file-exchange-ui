@@ -8,12 +8,13 @@ import { Modal } from "../../adminComponents/Modal";
 import { PageHeader } from "../../adminComponents/PageHeader";
 import { UserList } from "../../adminComponents/UserList";
 import { uuid } from "../../services/uuid";
+import { Tile } from "../../Tile";
 
 export const Users: React.FunctionComponent<RouteComponentProps> = () => {
   const [addUser, setAddUser] = useState(false);
   const [renderId, setRenderId] = useState(uuid());
   return (
-    <div>
+    <Tile>
       <Backdrop isOpen={addUser} closeOnClick={() => setAddUser(false)}>
         <Modal
           onClose={() => {
@@ -36,6 +37,6 @@ export const Users: React.FunctionComponent<RouteComponentProps> = () => {
       </PageHeader>
 
       <UserList renderId={renderId} onRefresh={() => setRenderId(uuid())} />
-    </div>
+    </Tile>
   );
 };

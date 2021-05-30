@@ -36,11 +36,11 @@ export const Admin: React.FunctionComponent<RouteComponentProps> = ({
   }
 
   return (
-    <div className="flex flex-1 p-1 container mx-auto">
-      <div className=" h-full w-48 divide-y">
+    <div className="flex flex-1 p-1 container mx-auto h-full">
+      <div className="w-48 divide-y pt-2">
         <Navigation isAdmin={isAdmin} />
       </div>
-      <div className="overflow-y-auto flex-1 p-2">{children}</div>
+      <div className="overflow-y-auto flex-1 p-2 h-full">{children}</div>
     </div>
   );
 };

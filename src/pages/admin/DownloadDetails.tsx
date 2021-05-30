@@ -6,6 +6,7 @@ import { DragDropUpload } from "../../components/DragDropUpload";
 import { JobFile } from "../../components/JobFile";
 import { useJobDetail } from "../../hooks/useJobDetail";
 import { uuid } from "../../services/uuid";
+import { Tile } from "../../Tile";
 
 export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
   () => {
@@ -20,7 +21,7 @@ export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
     };
 
     return (
-      <>
+      <Tile>
         <PageHeader title="Dateien für Kunden hinterlegen" />
         <JobInfo data={jobData} />
         <div>Vorhandene Dateien zum Download</div>
@@ -35,6 +36,6 @@ export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
         </div>
 
         <DragDropUpload uploadType="admin" refresh={() => refresh()} />
-      </>
+      </Tile>
     );
   };

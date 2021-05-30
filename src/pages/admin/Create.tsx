@@ -4,6 +4,7 @@ import { DisplayLink } from "../../adminComponents/DisplayLink";
 import { PageHeader } from "../../adminComponents/PageHeader";
 import { Progress } from "../../components/Progress";
 import { TJobData, useCreateJob } from "../../hooks/useCreateJob";
+import { Tile } from "../../Tile";
 
 type TJobType = TJobData["jobType"] | null;
 
@@ -67,7 +68,7 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
   }
 
   return (
-    <>
+    <Tile>
       <PageHeader title={`${title} einrichten`} />
       <DisplayLink link={link} onClose={() => resetJobData()} />
       <div className="py-2">
@@ -121,6 +122,6 @@ export const Create: React.FunctionComponent<RouteComponentProps> = () => {
           Erstellen
         </button>
       </div>
-    </>
+    </Tile>
   );
 };

@@ -5,6 +5,7 @@ import { PageHeader } from "../../adminComponents/PageHeader";
 import { JobFile } from "../../components/JobFile";
 import { useJobDetail } from "../../hooks/useJobDetail";
 import { uuid } from "../../services/uuid";
+import { Tile } from "../../Tile";
 
 export const UploadDetail: React.FunctionComponent<RouteComponentProps> =
   () => {
@@ -13,7 +14,7 @@ export const UploadDetail: React.FunctionComponent<RouteComponentProps> =
     const [viewId, setViewId] = useState(uuid());
     const { jobData, jobFiles } = useJobDetail(token, "upload", viewId);
     return (
-      <>
+      <Tile>
         <PageHeader title="Kunden Upload details" />
         <JobInfo data={jobData} />
         <div>Vom Kunden hochgeladene Dateien:</div>
@@ -26,6 +27,6 @@ export const UploadDetail: React.FunctionComponent<RouteComponentProps> =
             />
           ))}
         </div>
-      </>
+      </Tile>
     );
   };
