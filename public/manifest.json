@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "File-Exchange",
+  "name": "File-Exchange - Dateien sicher austauschen",
   "icons": [
     {
       "src": "favicon.ico",
