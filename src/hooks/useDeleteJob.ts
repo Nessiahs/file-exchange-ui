@@ -1,4 +1,3 @@
-import { useNavigate } from "@reach/router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -6,9 +5,8 @@ export const useDeleteJob = (token: string | null) => {
   const [progress, setProgress] = useState(false);
   const [error, setError] = useState(false);
 
-  const navigate = useNavigate();
   useEffect(() => {
-    if (token === null) {
+    if (!token) {
       return;
     }
 

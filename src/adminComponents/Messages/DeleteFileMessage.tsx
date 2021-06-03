@@ -1,3 +1,5 @@
+import React from "react";
+
 type TFileDeleteMessageProps = { filename: string };
 
 export const DeleteFileMessage: React.FunctionComponent<TFileDeleteMessageProps> =
