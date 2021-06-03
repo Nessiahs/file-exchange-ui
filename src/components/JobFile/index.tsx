@@ -3,15 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useState } from "react";
+import { AdminDelete } from "../../adminComponents/AdminDelete";
 import { hover } from "../../config/classNames";
 import { useDeleteFile } from "../../hooks/useDeleteFile";
 import { useDownloadFile } from "../../hooks/useDownloadFile";
 import { TFiles, TJobType } from "../../hooks/useJobDetail";
-import { FileDelete } from "./FileDelete";
 
 type TJobFileProps = {
   refresh?: () => void;
-  showDelete?: boolean;
   jobType?: TJobType;
 } & TFiles;
 
@@ -23,7 +22,6 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
   token,
   hashname,
   jobType,
-  showDelete = true,
   refresh,
 }) => {
   const [deleteId, setDeleteId] = useState<number | null>(null);
@@ -65,15 +63,11 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
       <div className="flex-grow">{filename}</div>
       <div className="w-32">{moment(created).format("DD.MM.YYYY mm:HH")}</div>
       <div className="w-20 text-right pr-2">{prettyBytes(size)}</div>
-      <FileDelete
-        onDelete={() => setDeleteId(id)}
-        progress={progress}
-        show={showDelete}
-      />
+      <AdminDelete onDelete={() => setDeleteId(id)} progress={progress} />
 
       <div className="w-12 flex justify-center">
         <div
-          className={`w-6 h-6 rounded border roundet border-green-600 text-green-600 text-center cursor-pointer hover:text-white
+          className={`w-7 rounded border roundet border-green-600 text-green-600 text-center cursor-pointer hover:text-white
           hover:bg-green-600 ${downloadProgress ? " hidden" : ""}`}
           onClick={() => setForceDownload({ token, hashname, jobType })}>
           <FontAwesomeIcon icon={faFileDownload} />

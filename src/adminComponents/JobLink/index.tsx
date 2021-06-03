@@ -15,11 +15,13 @@ export const JobLink: React.FunctionComponent<TJobLinkProps> = ({
 
   const uri = `${location.origin}/${jobType}/${token}/`;
   return (
-    <div className="flex">
+    <div className="flex justify-between">
       <a href={uri} target="_blank" rel="noreferrer">
         Ansehen
       </a>
-      <CopyButton toCopy={uri} />
+      <div className="mr-2">
+        <CopyButton toCopy={uri} />
+      </div>
     </div>
   );
 };

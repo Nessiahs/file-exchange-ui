@@ -1,16 +1,25 @@
 import moment from "moment";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { TJob } from "../../hooks/useJobDetail";
+import { AdminContext } from "../../path/admin";
 import { ExpireInfo } from "../ExpireInfo";
 import { JobLink } from "../JobLink";
 import { JobTypeIcon } from "../JobTypeIcon";
 import { SecretIcon } from "../SecretIcon";
 import { InfoBox } from "./InfoBox";
+import { OwnerActions } from "./OwnerActions";
 type TJobInfo = {
   data: TJob | null;
 };
 
 export const JobInfo: React.FunctionComponent<TJobInfo> = ({ data }) => {
+  const { setResponseUser } = useContext(AdminContext);
+  useEffect(() => {
+    if (setResponseUser && data?.createdBy) {
+      setResponseUser(data.createdBy);
+    }
+  }, [data, setResponseUser]);
+
   if (data === null) {
     return null;
   }
@@ -33,6 +42,7 @@ export const JobInfo: React.FunctionComponent<TJobInfo> = ({ data }) => {
       <InfoBox title="Gültig bis">
         <ExpireInfo expires={data.expires} />
       </InfoBox>
+      <OwnerActions />
     </div>
   );
 };

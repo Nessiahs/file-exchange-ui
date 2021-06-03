@@ -1,8 +1,8 @@
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useState } from "react";
-import { DeleteButton } from "../../adminComponents/DeleteButton";
 import { hover } from "../../config/classNames";
 import { useUpload } from "../../hooks/useUpload";
+import { DeleteButton } from "../DeleteButton";
 
 type TFileInfoProps = {
   file: File;

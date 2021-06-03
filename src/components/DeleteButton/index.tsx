@@ -13,7 +13,7 @@ export const DeleteButton: React.FunctionComponent<TDeleteButton> = ({
 }) => {
   return (
     <div
-      className={`w-6 h-6 border rounded border-red-600 text-red-600 text-center cursor-pointer
+      className={`w-7 border rounded border-red-600 text-red-600 text-center cursor-pointer
           hover:text-white hover:bg-red-600${className ? ` ${className}` : ""}`}
       onClick={onClick}>
       <FontAwesomeIcon icon={faTrash} />
