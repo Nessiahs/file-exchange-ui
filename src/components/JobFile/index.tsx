@@ -4,6 +4,7 @@ import moment from "moment";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useState } from "react";
 import { AdminDelete } from "../../adminComponents/AdminDelete";
+import { DeleteFileMessage } from "../../adminComponents/Messages/DeleteFileMessage";
 import { hover } from "../../config/classNames";
 import { useDeleteFile } from "../../hooks/useDeleteFile";
 import { useDownloadFile } from "../../hooks/useDownloadFile";
@@ -63,7 +64,9 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
       <div className="flex-grow">{filename}</div>
       <div className="w-32">{moment(created).format("DD.MM.YYYY mm:HH")}</div>
       <div className="w-20 text-right pr-2">{prettyBytes(size)}</div>
-      <AdminDelete onDelete={() => setDeleteId(id)} progress={progress} />
+      <AdminDelete onDelete={() => setDeleteId(id)} progress={progress}>
+        <DeleteFileMessage filename={filename} />
+      </AdminDelete>
 
       <div className="w-12 flex justify-center">
         <div
