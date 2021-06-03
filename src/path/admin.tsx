@@ -2,45 +2,46 @@ import { RouteComponentProps, useLocation } from "@reach/router";
 import React, { useEffect, useState } from "react";
 import { Navigation } from "../adminComponents/Navigation";
 import { Login } from "../components/Login";
-import { useIsLogedIn } from "../hooks/useIsLogedIn";
+import { useIsLoggedIn } from "../hooks/useIsLogedIn";
+
+type TAdminContext = {
+  isAdmin: 0 | 1;
+  userId: number;
+  responseUser: number;
+  setResponseUser: (id: number) => void;
+};
+
+export const AdminContext = React.createContext<Partial<TAdminContext>>({});
 
 export const Admin: React.FunctionComponent<RouteComponentProps> = ({
   children,
 }) => {
   const location = useLocation();
-  const { isLogedIn, forceAdmin } = useIsLogedIn(location.pathname);
+  const { isLoggedIn, isAdmin, id } = useIsLoggedIn(location.pathname);
   const [hideLogin, setHide] = useState<boolean | null>(null);
-  const [isAdmin, setAdmin] = useState<0 | 1>(0);
+  const [responseUser, setResponseUser] = useState(-1);
 
   useEffect(() => {
-    setHide(isLogedIn);
-  }, [isLogedIn, setHide]);
-
-  useEffect(() => {
-    setAdmin(forceAdmin);
-  }, [forceAdmin, setAdmin]);
+    setHide(isLoggedIn);
+  }, [isLoggedIn, setHide]);
 
   if (hideLogin === null) {
     return null;
   }
 
   if (!hideLogin) {
-    return (
-      <Login
-        hideLogin={(l: boolean) => setHide(l)}
-        setAdmin={(state) => {
-          setAdmin(state);
-        }}
-      />
-    );
+    return <Login hideLogin={(l: boolean) => setHide(l)} />;
   }
 
   return (
-    <div className="flex flex-1 p-1 container mx-auto h-full">
-      <div className="w-48 divide-y pt-2">
-        <Navigation isAdmin={isAdmin} />
+    <AdminContext.Provider
+      value={{ isAdmin, userId: id, responseUser, setResponseUser }}>
+      <div className="flex flex-1 p-1 container mx-auto h-full">
+        <div className="w-48 divide-y pt-2">
+          <Navigation isAdmin={isAdmin} />
+        </div>
+        <div className="overflow-y-auto flex-1 p-2 h-full">{children}</div>
       </div>
-      <div className="overflow-y-auto flex-1 p-2 h-full">{children}</div>
-    </div>
+    </AdminContext.Provider>
   );
 };

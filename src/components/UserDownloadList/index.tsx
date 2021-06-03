@@ -18,7 +18,6 @@ export const UserDownloadList: React.FunctionComponent<RouteComponentProps> =
               {...file}
               refresh={() => {}}
               key={`job-file${i}`}
-              showDelete={false}
               jobType="download"
             />
           ))}

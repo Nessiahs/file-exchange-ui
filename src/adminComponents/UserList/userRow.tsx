@@ -2,10 +2,10 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { DeleteButton } from "../../components/DeleteButton";
 import { hover } from "../../config/classNames";
 import { useDeleteUser } from "../../hooks/useDeleteUser";
 import { TUser } from "../../hooks/useUserList";
-import { DeleteButton } from "../DeleteButton";
 import { IsAdmin } from "./IsAdmin";
 
 type TUserRowProps = {
