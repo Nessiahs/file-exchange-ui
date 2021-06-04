@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAnimatedHeight } from "../effects/useAnimatedHeight";
-import { useRotateEffect } from "../effects/useRotateEffect";
+import { useAnimatedHeight } from "../../hooks/effects/useAnimatedHeight";
+import { useRotateEffect } from "../../hooks/effects/useRotateEffect";
 
 export const useToggleTile = (
   contentRef: React.RefObject<HTMLDivElement>,
