@@ -1,20 +1,24 @@
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { createRef } from "react";
+import { useRotateEffect } from "../../hooks/effects/useRotateEffect";
 
 type TGroupToggleProps = {
   isOpen: boolean | null;
 };
 export const GroupToggle: React.FunctionComponent<TGroupToggleProps> = ({
-  isOpen,
+  isOpen = false,
 }) => {
+  const ref = createRef<HTMLDivElement>();
+  useRotateEffect(ref, isOpen, 180);
+
   if (isOpen === null) {
     return null;
   }
 
   return (
-    <div className="px-2 pt-1">
-      <FontAwesomeIcon icon={isOpen ? faCaretDown : faCaretUp} />
+    <div className="transition-all transform px-2 pt-1" ref={ref}>
+      <FontAwesomeIcon icon={faCaretUp} />
     </div>
   );
 };

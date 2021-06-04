@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "@reach/router";
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useState } from "react";
 import { TNavGroup } from "../../config/adminNavigation";
 import { hover } from "../../config/classNames";
+import { useAnimatedHeight } from "../../hooks/effects/useAnimatedHeight";
 import { GroupToggle } from "./GroupToggle";
 
 export const NavGroup: React.FunctionComponent<TNavGroup> = ({
@@ -14,22 +15,13 @@ export const NavGroup: React.FunctionComponent<TNavGroup> = ({
   const [isOpen, setOpen] = useState<boolean | null>(children ? true : null);
   const ref = createRef<HTMLDivElement>();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!ref.current) {
-      return;
-    }
-    if (!isOpen) {
-      ref.current.style.maxHeight = "0px";
-    } else {
-      ref.current.style.maxHeight = "999px";
-    }
-  }, [ref, isOpen]);
+  useAnimatedHeight(ref, isOpen);
 
   return (
     <>
       <div>
         <div
-          className={`flex bg-gray-600 text-white cursor-pointer ${hover}`}
+          className={`flex bg-gray-600 text-white cursor-pointer ${hover} transition-all`}
           onClick={() => {
             if (children) {
               setOpen(!isOpen);
@@ -44,10 +36,7 @@ export const NavGroup: React.FunctionComponent<TNavGroup> = ({
           <GroupToggle isOpen={isOpen} />
         </div>
       </div>
-      <div
-        ref={ref}
-        className="transition-transform overflow-hidden duration-300 ease-linear bg-white"
-        style={{ maxHeight: "999px" }}>
+      <div ref={ref} className="overflow-hidden duration-300 bg-white">
         <div> {children}</div>
       </div>
     </>
