@@ -1,3 +1,4 @@
+import React from "react";
 import { Badge } from "./Badge";
 import { TUseBadgeInputProps, useBadgeInput } from "./useBadgeInput";
 

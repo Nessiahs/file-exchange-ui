@@ -4,7 +4,7 @@ import { BadgeInput } from "../../adminComponents/BadgeInput";
 import { LabeledCheckbox } from "../../adminComponents/LabeledCheckbox";
 import { PageHeader } from "../../adminComponents/PageHeader";
 import { Tile } from "../../adminComponents/Tile";
-import { ToggleTile } from "../../adminComponents/ToggleTiile";
+import { ToggleTile } from "../../adminComponents/ToggleTile";
 
 const pattern =
   /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useAnimatedHeight } from "../../hooks/effects/useAnimatedHeight";
 import { useRotateEffect } from "../../hooks/effects/useRotateEffect";
 

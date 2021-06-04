@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 type TRotate = 45 | 90 | 180;
 
