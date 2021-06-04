@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { STORAGE_KEY } from "./storage";
 
 let token: string | null = sessionStorage.getItem(STORAGE_KEY);
-
+const statusForbidden = 401;
 axios.interceptors.request.use(
   (config: AxiosRequestConfig): AxiosRequestConfig => {
     config.baseURL = process.env.REACT_APP_API_URI ?? "/";
@@ -32,10 +32,12 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    sessionStorage.removeItem(STORAGE_KEY);
-
     if (error.response.data.installed === false) {
       navigate("/install/");
+    } else if (error.response.statusCode === statusForbidden) {
+      sessionStorage.removeItem(STORAGE_KEY);
+      window.location.reload();
+      return;
     }
 
     return Promise.reject(error);
