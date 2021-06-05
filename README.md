@@ -26,6 +26,38 @@ Beinhaltet:
 - Zugriff auf die Backend-Api kann nur für bestimmte Ip´s freigegeben werden
 - Es gibt Admin und User Rolle für das Backend
 
+## Best Practice Server setup
+
+Es wird Empfohlen dass, das Frontend seperat von der Api gehostet wird, dafür benutze ich folgendes Setup:
+
+NGINX als SSL-Terminierung. Dahinter dann ein Node.js Server mit dem Backend und ein weiter NGINX für das Frontend. Hierzu eignet sich
+ein Docker-Setup sehr gut.
+
+## Umgebungsvariablen
+
+Folgende Umgebungsvariablen können in der .env Datei gesetzt werden:
+
+Key für den Session-Storage um den Token zu speichern
+
+`REACT_APP_STORAGE_KEY='file-upload'`
+
+Pfad zur API für die Ajax-Requests
+
+`REACT_APP_API_URI='/api/'`
+
+## Installation
+
+Es wird ein System mit Node.js Version 14 benötig.
+
+```bash
+  git clone https://github.com/Nessiahs/file-exchange-ui.git
+  cd file-exchange-ui
+  yarn install
+  yarn build
+```
+
+Im Ordner `build` befinden sich dann die Files, die auf den Webserver übertragen werden müssen
+
 ## Status
 
 Dieses Projekt befindet sich noch in der Entwicklung, kann jedoch eingesetzt werden.
