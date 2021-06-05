@@ -75,7 +75,14 @@ function App() {
         </div>
         <div className="bg-gray-800 text-white px-3">
           <div className="flex mx-auto container justify-between">
-            <div>&copy; Nessiahs {new Date().getFullYear()}</div>
+            <div>
+              <a
+                href="https://github.com/Nessiahs"
+                target="_blank"
+                rel="noreferrer">
+                &copy; Nessiahs {new Date().getFullYear()}
+              </a>
+            </div>
             <div>
               <Link to="/changelog/">Version: {version}</Link>
             </div>
