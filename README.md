@@ -82,7 +82,7 @@ Hier wird dann der erste Admin-Benutzer eingerichtet. Die EMail ist der Benutzer
 
 ![Customer download detail](./screenshots/customer_download_detail.png)
 
-![Customer secret input](./scrennshots/download_secret.png)
+![Customer secret input](./screenshots/download_secret.png)
 
 ## Status
 
