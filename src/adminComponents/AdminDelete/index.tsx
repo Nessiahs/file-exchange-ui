@@ -17,7 +17,11 @@ export const AdminDelete: React.FunctionComponent<TFileDeleteProps> = ({
 }) => {
   const { isAdmin, userId, responseUser } = useContext(AdminContext);
   const [confirmOpen, setOpen] = useState(false);
-  if (!isAdmin && !isAdmin && userId !== responseUser) {
+  if (
+    !userId ||
+    !responseUser ||
+    (!isAdmin && !isAdmin && userId !== responseUser)
+  ) {
     return null;
   }
 
