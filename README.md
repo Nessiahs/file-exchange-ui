@@ -33,6 +33,8 @@ Es wird Empfohlen dass, das Frontend seperat von der Api gehostet wird, dafür b
 NGINX als SSL-Terminierung. Dahinter dann ein Node.js Server mit dem Backend und ein weiter NGINX für das Frontend. Hierzu eignet sich
 ein Docker-Setup sehr gut.
 
+[docker-compose](https://github.com/Nessiahs/file-exchange-compose), die dieses Setup zu verfügung stellt
+
 ## Umgebungsvariablen
 
 Folgende Umgebungsvariablen können in der .env Datei gesetzt werden:
@@ -57,6 +59,30 @@ Es wird ein System mit Node.js Version 14 benötig.
 ```
 
 Im Ordner `build` befinden sich dann die Files, die auf den Webserver übertragen werden müssen
+
+## Inbetriebnahme
+
+Die Oberfläche zum Verwalten der Down/Uploads ist unter dem Pfad `/admin/` zu finden. Beim ersten Aufruf dieser URL, erscheint folgender Screen:
+
+![Installation](./screenshots/installation.png)
+
+Hier wird dann der erste Admin-Benutzer eingerichtet. Die EMail ist der Benutzername. Nach Eingabe dieser Daten und Übermittlung, wird auf dem Server die Datenbank eingerichtet und ein Schlüssel für die Verschlüsselung erstellt. Nach der Einrichtung sollte die Datenbank gesichert werden, geht dieser Schlüssel verloren, kann keine der Dateien mehr entschlüsselt werden.
+
+## Screenshots
+
+![Home Screenshots](./screenshots/home.png)
+
+![Job create](./screenshots/create.png)
+
+![Upload list](./screenshots/upload_list.png)
+
+![Upload detail](./screenshots/upload_detail.png)
+
+![Customer download list](./screenshots/customer_download_list.png)
+
+![Customer download detail](./screenshots/customer_download_detail.png)
+
+![Customer secret input](./scrennshots/download_secret.png)
 
 ## Status
 
