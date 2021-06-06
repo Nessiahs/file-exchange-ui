@@ -31,7 +31,6 @@ export const AdminDelete: React.FunctionComponent<TFileDeleteProps> = ({
         toConfirm={confirmHeader}
         isOpen={confirmOpen}
         onConfirm={() => {
-          //setOpen(false);
           onDelete();
         }}
         onClose={() => setOpen(false)}>

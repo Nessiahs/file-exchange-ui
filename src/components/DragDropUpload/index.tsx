@@ -1,10 +1,9 @@
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React from "react";
 import { DropedFileInfo } from "./DropedFileInfo";
 import { NoFiles } from "./NoFiles";
-
-const defaultClassName = "border-opacity-20 ";
+import { useDragDropUploadComponent } from "./useDragDropUploadComponent";
 
 type TDropAreaProps = {
   uploadType?: "admin" | "customer";
@@ -15,82 +14,22 @@ export const DragDropUpload: React.FunctionComponent<TDropAreaProps> = ({
   uploadType = "customer",
   refresh,
 }) => {
-  const [className, setClassName] = useState(defaultClassName);
-  const [uploadFiles, setUploadFiles] = useState<File[]>([]);
-  const [finished, setFinished] = useState(0);
-  const [upload, setUpload] = useState(false);
-
-  const addFiles = (f: FileList) => {
-    const list = [...uploadFiles];
-    for (let i = 0; i < f.length; i++) {
-      if (
-        uploadFiles.find((p) => p.name === f[i].name && p.size === f[i].size)
-      ) {
-        continue;
-      }
-      list.push(f[i]);
-    }
-    setUploadFiles(list);
-  };
-
-  const onDelete = (name: string, size: number) => {
-    const list = uploadFiles.filter(
-      (file) => file.name !== name && file.size !== size
-    );
-    setUploadFiles(list);
-  };
-
-  const onFinsihUpload = () => {
-    if (finished + 1 < uploadFiles.length) {
-      setFinished(finished + 1);
-    } else {
-      setFinished(0);
-      setUploadFiles([]);
-      setUpload(false);
-      if (refresh) {
-        window.setTimeout(() => {
-          refresh();
-        }, 300);
-      }
-    }
-  };
-
+  const {
+    opacity,
+    events,
+    upload,
+    uploadFiles,
+    onDelete,
+    onFinsihUpload,
+    setUpload,
+  } = useDragDropUploadComponent(refresh);
   return (
     <>
       <div
-        onDragEnter={(e) => {
-          if (upload) {
-            return;
-          }
-          e.preventDefault();
-          e.stopPropagation();
-          setClassName("border-opacity-80");
-        }}
-        onDragOver={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-        onDrop={(e) => {
-          if (upload) {
-            return;
-          }
-          e.preventDefault();
-          e.stopPropagation();
-          setClassName(defaultClassName);
-          addFiles(e.dataTransfer.files);
-          e.dataTransfer.clearData();
-        }}
-        onDragLeave={(e) => {
-          if (upload) {
-            return;
-          }
-          e.stopPropagation();
-          e.preventDefault();
-          setClassName(defaultClassName);
-        }}
-        className={`w-full border-gray-700 border-dashed border-2 rounded h-48 ${className}`}
-      >
-        <div className="text-center text-xl mt-14 font-bold">
+        {...events}
+        className={`w-full border-gray-700 border-dashed border-2 rounded h-48 border-opacity-${opacity}`}>
+        <div
+          className={`text-center text-xl mt-14 font-bold opacity-${opacity}`}>
           {upload ? "Dateien werden hochgeladen" : "Dateien hier ablegen"}
         </div>
       </div>
@@ -120,8 +59,7 @@ export const DragDropUpload: React.FunctionComponent<TDropAreaProps> = ({
             if (uploadFiles.length && !upload) {
               setUpload(true);
             }
-          }}
-        >
+          }}>
           <div className="w-8 h-8 text-center mr-2">
             <FontAwesomeIcon icon={faUpload} />
           </div>

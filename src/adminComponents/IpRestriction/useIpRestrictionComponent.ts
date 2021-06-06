@@ -3,7 +3,7 @@ import { TIpRestriction } from "../../hooks/api/settings";
 import { useGetSettings } from "../../hooks/api/useGetSettings";
 import { useSaveSetting } from "../../hooks/api/useSaveSetting";
 
-export const useIpRestriction = () => {
+export const useIpRestrictionComponent = () => {
   const response: TIpRestriction | null = useGetSettings("ipRestrictions");
   const [restricted, setRestricted] = useState(false);
   const [allowedIp, setAllowedIp] = useState<string[]>([]);

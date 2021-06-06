@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useDeleteJob } from "../../hooks/useDeleteJob";
-import { AdminContext } from "../../path/admin";
+import React from "react";
+import { useDeleteJobByOwner } from "../../hooks/adminContext/useOwnerActions";
 import { AdminDelete } from "../AdminDelete";
 import { DeleteJobMessage } from "../Messages/DeleteJobMessage";
 import { InfoBox } from "./InfoBox";
@@ -12,11 +11,9 @@ export const OwnerActions: React.FunctionComponent<TOwnerActionsProps> = ({
   jobName,
   token,
 }) => {
-  const { isAdmin, userId, responseUser } = useContext(AdminContext);
-  const [deleteJob, setDelete] = useState<string | null>(null);
-  const { progress, error } = useDeleteJob(deleteJob);
+  const { isOwner, onDelete } = useDeleteJobByOwner();
 
-  if (!isAdmin && !isAdmin && userId !== responseUser) {
+  if (!isOwner) {
     return null;
   }
 
@@ -26,7 +23,7 @@ export const OwnerActions: React.FunctionComponent<TOwnerActionsProps> = ({
         <div className="flex justify-end">
           <AdminDelete
             onDelete={() => {
-              setDelete(token);
+              onDelete(token);
             }}>
             <DeleteJobMessage jobname={jobName} />
           </AdminDelete>

@@ -3,7 +3,7 @@ import { isIpAddress } from "../../config/checks";
 import { BadgeInput } from "../BadgeInput";
 import { LabeledCheckbox } from "../LabeledCheckbox";
 import { ToggleTile } from "../ToggleTile";
-import { useIpRestriction } from "./useIpRestriction";
+import { useIpRestrictionComponent } from "./useIpRestrictionComponent";
 
 export const IpRestriction: React.FunctionComponent = () => {
   const {
@@ -16,7 +16,7 @@ export const IpRestriction: React.FunctionComponent = () => {
     setProxy,
     setProxyHeader,
     save,
-  } = useIpRestriction();
+  } = useIpRestrictionComponent();
 
   return (
     <ToggleTile title="Api Zugriff">

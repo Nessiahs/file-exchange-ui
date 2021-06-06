@@ -34,7 +34,6 @@ export const Confirm: React.FunctionComponent<TConfirmProps> = ({
             </div>
             {children}
           </div>
-
           <div className="flex">
             <div className="w-1/2 text-center cursor-pointer">
               <div

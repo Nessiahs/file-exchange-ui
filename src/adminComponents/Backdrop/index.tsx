@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
+import { useBackdropComponent } from "./useBackdropComponent";
 export type TBackdropProps = {
   isOpen: boolean;
   className?: string;
@@ -13,33 +14,7 @@ export const Backdrop: React.FunctionComponent<TBackdropProps> = ({
   root,
   closeOnClick,
 }) => {
-  const [portalRoot, setPortalRoot] = useState<HTMLElement>();
-  const [el, setEl] = useState<HTMLElement>();
-
-  useEffect(() => {
-    if (!portalRoot && !root) {
-      setPortalRoot(document.body);
-    } else if (!portalRoot && root) {
-      setPortalRoot(root);
-    }
-  }, [portalRoot, setPortalRoot, root]);
-
-  useEffect(() => {
-    if (!el) {
-      const element = document.createElement("div");
-      element.classList.add("portal");
-      setEl(element);
-    }
-  }, [el, setEl]);
-
-  useEffect(() => {
-    if (portalRoot && el) {
-      portalRoot.appendChild(el);
-      return () => {
-        portalRoot.removeChild(el);
-      };
-    }
-  }, [portalRoot, el]);
+  const { el, portalRoot } = useBackdropComponent(root);
 
   if (!isOpen || !portalRoot || !el) {
     return null;

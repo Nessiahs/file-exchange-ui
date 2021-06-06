@@ -20,7 +20,6 @@ export const UserRow: React.FunctionComponent<TUserRowProps> = ({
   onRefresh,
 }) => {
   const [del, setDelete] = useState<number | null>(null);
-
   const progress = useDeleteUser(del);
 
   useEffect(() => {

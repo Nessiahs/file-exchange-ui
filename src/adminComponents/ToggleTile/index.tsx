@@ -1,7 +1,7 @@
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { createRef } from "react";
-import { useToggleTile } from "./useToggleTile";
+import { useToggleTileComponent } from "./useToggleTileComponent";
 
 type TToggleTileProps = {
   title: string;
@@ -15,8 +15,7 @@ export const ToggleTile: React.FunctionComponent<TToggleTileProps> = ({
 }) => {
   const contentRef = createRef<HTMLDivElement>();
   const iconRef = createRef<HTMLDivElement>();
-
-  const { toggle } = useToggleTile(contentRef, iconRef);
+  const { toggle } = useToggleTileComponent(contentRef, iconRef);
 
   let classNames = "transition-all";
 

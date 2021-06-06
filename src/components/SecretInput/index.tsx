@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TJobType } from "../../hooks/useJobDetail";
-import { useVerifySecret } from "../../hooks/useVerifySecret";
+import { useSecretInputComponent } from "./useSecretInputComponent";
 
 type TSecretProps = {
   jobType: TJobType;
@@ -11,17 +11,8 @@ export const SecretInput: React.FunctionComponent<TSecretProps> = ({
   jobType,
   refresh,
 }) => {
-  const [secret, setSecret] = useState("");
-  const [submit, setSubmit] = useState<string | null>(null);
-  const { isValid, progress } = useVerifySecret(submit, jobType);
-
-  useEffect(() => {
-    if (isValid === true && secret) {
-      setSecret("");
-      refresh();
-    }
-  }, [isValid, secret, refresh, setSecret]);
-
+  const { secret, progress, validOpacity, buttonDisabled, onChange, onSubmit } =
+    useSecretInputComponent(jobType, refresh);
   return (
     <div className="container mx-auto">
       <div className="text-xl w-2/3 border rounded mx-auto text-center bg-red-300 border-red-600 p-3">
@@ -29,31 +20,25 @@ export const SecretInput: React.FunctionComponent<TSecretProps> = ({
           Ihr {jobType === "download" ? "Download" : "Upload"} ist durch eine
           zusätzliche Eingabe geschützt
         </p>
-        <div>
-          <input
-            disabled={progress}
-            type="text"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            className="mt-2"
-            placeholder="Secret"
-          />
-          <div
-            className={`text-red-900 text-sm p-2${
-              isValid === false ? "" : " invisible"
-            } `}
-          >
-            Bitte überprüfen Sie das Secret
+        <form onSubmit={onSubmit}>
+          <div>
+            <input
+              disabled={progress}
+              type="text"
+              value={secret}
+              onChange={onChange}
+              className="mt-2"
+              placeholder="Secret"
+            />
+            <div
+              className={`text-red-900 text-sm p-2 transition-opacity duration-700 opacity-${validOpacity} `}>
+              Bitte überprüfen Sie das Secret
+            </div>
+            <button type="submit" disabled={buttonDisabled}>
+              Anmelden
+            </button>
           </div>
-          <button
-            onClick={() => {
-              setSubmit(secret);
-            }}
-            disabled={!secret || progress}
-          >
-            Anmelden
-          </button>
-        </div>
+        </form>
       </div>
     </div>
   );

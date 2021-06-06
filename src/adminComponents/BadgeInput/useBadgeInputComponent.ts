@@ -8,7 +8,7 @@ export type TUseBadgeInputProps = {
   onValid?: (value: string) => string;
 };
 
-export const useBadgeInput = (props: TUseBadgeInputProps) => {
+export const useBadgeInputComponent = (props: TUseBadgeInputProps) => {
   const { value, setValue, onValid, className, disabled } = props;
   const [error, setError] = useState("");
   let classNames = "";
