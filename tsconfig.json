@@ -16,9 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "./src/**/*.tsx",
-    "./src/**/*.ts",
-    "src/__tests__/useAnimatedHeight.test.tsx"
-  ]
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }

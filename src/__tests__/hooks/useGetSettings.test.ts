@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 import axios from "axios";
 import "jest";
-import { useGetSettings } from "../hooks/api/useGetSettings";
+import { useGetSettings } from "../../hooks/api/useGetSettings";
 const response = { ip: false, proxy: false };
 jest.mock("axios");
 

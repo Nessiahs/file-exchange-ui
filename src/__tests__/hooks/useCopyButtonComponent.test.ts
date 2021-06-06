@@ -6,7 +6,7 @@ import {
 import { cleanup } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import "jest";
-import { useCopyButtonComponent } from "../adminComponents/CopyButton/useCopyButtonComponent";
+import { useCopyButtonComponent } from "../../adminComponents/CopyButton/useCopyButtonComponent";
 
 const copyValue = "I am a test copy";
 const copyTimeout = 3100;

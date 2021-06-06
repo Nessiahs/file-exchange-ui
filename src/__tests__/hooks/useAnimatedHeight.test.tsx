@@ -1,7 +1,7 @@
 import { cleanup } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import "jest";
-import { useAnimatedHeight } from "../hooks/effects/useAnimatedHeight";
+import { useAnimatedHeight } from "../../hooks/effects/useAnimatedHeight";
 
 const contentHeight = 300;
 const getRefCurrent = () => {
