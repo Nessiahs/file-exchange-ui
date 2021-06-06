@@ -12,18 +12,12 @@ const copyValue = "I am a test copy";
 const copyTimeout = 3100;
 afterEach(cleanup);
 
-const getHook = () => {
-  const { result } = renderHook(() => useCopyButtonComponent(copyValue));
-  return result.current;
-};
-
 test("return object with key icon and onClick", () => {
-  const hook = getHook();
-
-  expect(hook.hasOwnProperty("icon")).toBe(true);
-  expect(typeof hook).toBe("object");
-  expect(hook.hasOwnProperty("onClick")).toBe(true);
-  expect(typeof hook.onClick).toBe("function");
+  const { result } = renderHook(() => useCopyButtonComponent(copyValue));
+  expect(result.current.hasOwnProperty("icon")).toBe(true);
+  expect(typeof result.current).toBe("object");
+  expect(result.current.hasOwnProperty("onClick")).toBe(true);
+  expect(typeof result.current.onClick).toBe("function");
 });
 
 test("default icon and color", () => {
@@ -76,6 +70,7 @@ test("clipborad write text throws error", async () => {
   expect(navigator.clipboard.writeText).toHaveBeenCalledWith(copyValue);
   expect(result.current.icon.color).toBe(" text-red-800");
   expect(result.current.icon.icon).toBe(faExclamationTriangle);
+
   await waitForNextUpdate({ timeout: copyTimeout });
   expect(result.current.icon.color).toBe("");
   expect(result.current.icon.icon).toBe(faCopy);

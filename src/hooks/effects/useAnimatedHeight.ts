@@ -5,7 +5,7 @@ export const useAnimatedHeight = (
   open: boolean | null
 ) => {
   useEffect(() => {
-    if (!ref || !ref.current) {
+    if (!ref.current) {
       return;
     }
 
