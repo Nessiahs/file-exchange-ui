@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const outOpacity = 20;
 const overOpacity = 80;
@@ -12,13 +12,15 @@ export const useDragDropUploadComponent = (refresh?: () => void) => {
 
   const addFiles = (f: FileList) => {
     const list = [...uploadFiles];
-    for (let i = 0; i < f.length; i++) {
+    const files = Array.from(f);
+
+    for (const file of files) {
       if (
-        uploadFiles.find((p) => p.name === f[i].name && p.size === f[i].size)
+        uploadFiles.find((p) => p.name === file.name && p.size === file.size)
       ) {
         continue;
       }
-      list.push(f[i]);
+      list.push(file);
     }
     setUploadFiles(list);
   };

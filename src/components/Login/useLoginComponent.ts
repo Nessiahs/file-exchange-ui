@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { emailCheck } from "../../config/checks";
 import { TCredentials, useLogin } from "../../hooks/useLogin";
 
@@ -77,7 +77,6 @@ export const useLoginComponent = (hideLogin: (l: boolean) => void) => {
   };
 
   const validateEmail = () => {
-    console.log(emailCheck.test(email));
     setValidEmail(emailCheck.test(email));
   };
 

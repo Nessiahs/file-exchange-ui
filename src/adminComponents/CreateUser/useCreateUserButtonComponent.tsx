@@ -56,7 +56,7 @@ export const useCreateUserButtonComponent = (onSuccess: () => void) => {
   };
 
   const onClick = () => {
-    if (!email || !password || isAdmin === undefined) {
+    if (!email || !password || typeof isAdmin !== "boolean") {
       return;
     }
     setData({ email, password, isAdmin });
