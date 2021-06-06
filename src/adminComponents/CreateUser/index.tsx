@@ -1,10 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext } from "react";
 import { Progress } from "../../components/Progress";
 import { emailCheck, passwordStrength } from "../../config/checks";
 import { errorStyle } from "../../config/classNames";
-import { useVerifyEmail } from "../../hooks/useVerifyEmail";
-import { uuid } from "../../services/uuid";
 import { TogglePasswordType } from "./TogglePasswordType";
+import { useCreateUserComponent } from "./useCreateUserComponent";
 import { ValidIndicator } from "./ValidIndicator";
 
 type TUserContext = {
@@ -28,33 +27,35 @@ export const CreateUser: React.FunctionComponent<TCreateUserProps> = ({
   forceAdmin,
   children,
 }) => {
-  const [email, setEmail] = useState("");
-  const [toValidate, setToValidate] = useState<string | null>(null);
-  const [isAdmin, setAdmin] = useState<0 | 1>(0);
-  const [isEmailValid, setEmailValid] = useState<null | boolean>(null);
-  const [password, setPassword] = useState("");
-  const [isPasswordValid, setPasswordValid] = useState<null | boolean>(null);
-  const [passwordType, setPasswordType] =
-    useState<"text" | "password">("password");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
-  const [passwordRepeatType, setPasswordRepeatType] =
-    useState<"text" | "password">("password");
-  const [isVerifiedPasswordValid, setVerifiedPasswordValid] =
-    useState<null | boolean>(null);
-  const [emailId] = useState(uuid());
-  const [passwordId] = useState(uuid());
-  const [repeatId] = useState(uuid());
-  const [progressMessage, setProgressMessage] = useState<React.ReactNode>(null);
-  const [progress, setProgress] = useState(false);
-
-  const emailChecked = useVerifyEmail(toValidate);
-
-  useEffect(() => {
-    if (emailChecked === null) {
-      return;
-    }
-    setEmailValid(emailChecked);
-  }, [emailChecked, setEmailValid]);
+  const {
+    progress,
+    progressMessage,
+    isEmailValid,
+    emailId,
+    email,
+    emailChecked,
+    isAdmin,
+    isPasswordValid,
+    passwordId,
+    passwordType,
+    isVerifiedPasswordValid,
+    repeatId,
+    passwordRepeatType,
+    passwordRepeat,
+    password,
+    setEmail,
+    setEmailValid,
+    setAdmin,
+    setPasswordType,
+    setPassword,
+    setPasswordValid,
+    setPasswordRepeat,
+    setToValidate,
+    setPasswordRepeatType,
+    setVerifiedPasswordValid,
+    setProgress,
+    setProgressMessage,
+  } = useCreateUserComponent();
 
   return (
     <>

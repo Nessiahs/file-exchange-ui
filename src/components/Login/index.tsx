@@ -1,50 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { TCredentials, useLogin } from "../../hooks/useLogin";
+import React from "react";
 import { Progress } from "../Progress";
+import { useLoginComponent } from "./useLoginComponent";
 
 type TLoginProps = {
   hideLogin: (l: boolean) => void;
 };
 
 export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [hasError, setError] = useState(false);
-  const [credentials, setCredentials] = useState<TCredentials>({
-    email: null,
-    password: null,
-  });
-  const { isValid, progress } = useLogin(credentials);
-
-  useEffect(() => {
-    if (isValid === true) {
-      hideLogin(true);
-    } else if (isValid === false) {
-      setError(true);
-    }
-  }, [isValid, hideLogin, setError]);
+  const {
+    progress,
+    email,
+    password,
+    isDisabled,
+    emailOpacity,
+    passwordOpacity,
+    isValidEmail,
+    formClassName,
+    onSubmit,
+    onPasswordChange,
+    onEmailChange,
+    validateEmail,
+  } = useLoginComponent(hideLogin);
 
   if (progress === true) {
     return <Progress message="Anmeldung" />;
   }
 
+  const labelClassName = "w-full transition-opacity duration-700 opacity-";
   return (
-    <div
-      className={`w-96 border rounded mx-auto p-2 mt-10 ${
-        hasError ? "border-red-800 text-red-800 bg-red-400" : "border-gray-500"
-      }`}>
-      <form
-        onSubmit={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          if (!email || !password) {
-            return;
-          }
-          setCredentials({ email, password });
-        }}>
+    <div className={`w-96 border rounded mx-auto p-2 mt-10 ${formClassName}`}>
+      <form onSubmit={onSubmit}>
         <div className="font-bold text-lg">Login</div>
         <div>
-          <label className="w-full">
+          <label className={labelClassName + emailOpacity}>
             Benutzername <span className="text-xs">(Email-Adresse)</span>
           </label>
           <input
@@ -52,31 +40,28 @@ export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
             placeholder="example@example.com"
             value={email}
             type="text"
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            onChange={onEmailChange}
+            onBlur={validateEmail}
           />
-        </div>
-        <div className="mt-2">
-          <label
-            className={`transition-opacity duration-700 ${
-              password.length ? "opacity-100" : "opacity-0"
+          <div
+            className={`text-red-800 transition-opacity duration-700 text-xs py-1 opacity-${
+              isValidEmail ? "0" : "100"
             }`}>
-            Passwort
-          </label>
+            Bitte gültige Email eingeben!!
+          </div>
+        </div>
+        <div>
+          <label className={labelClassName + passwordOpacity}>Passwort</label>
           <input
             placeholder="Password"
             className="w-full"
             type="password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.currentTarget.value);
-            }}
+            onChange={onPasswordChange}
           />
         </div>
         <div className="text-center mt-2">
-          <button
-            type="submit"
-            className="w-full ml-0"
-            disabled={!password || !email}>
+          <button type="submit" className="w-full ml-0" disabled={isDisabled}>
             Login
           </button>
         </div>

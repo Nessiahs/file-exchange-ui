@@ -1,7 +1,7 @@
 import moment from "moment";
-import React, { useContext, useEffect } from "react";
+import React from "react";
+import { useSetCreatedBy } from "../../hooks/adminContext/useSetCreatedBy";
 import { TJob } from "../../hooks/useJobDetail";
-import { AdminContext } from "../../path/admin";
 import { ExpireInfo } from "../ExpireInfo";
 import { JobLink } from "../JobLink";
 import { JobTypeIcon } from "../JobTypeIcon";
@@ -13,12 +13,7 @@ type TJobInfo = {
 };
 
 export const JobInfo: React.FunctionComponent<TJobInfo> = ({ data }) => {
-  const { setResponseUser } = useContext(AdminContext);
-  useEffect(() => {
-    if (setResponseUser && data?.createdBy) {
-      setResponseUser(data.createdBy);
-    }
-  }, [data, setResponseUser]);
+  useSetCreatedBy(data);
 
   if (data === null) {
     return null;

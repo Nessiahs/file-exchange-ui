@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAnimatedHeight } from "../../hooks/effects/useAnimatedHeight";
 import { useRotateEffect } from "../../hooks/effects/useRotateEffect";
 
-export const useToggleTile = (
+export const useToggleTileComponent = (
   contentRef: React.RefObject<HTMLDivElement>,
   iconRef: React.RefObject<HTMLElement>
 ) => {

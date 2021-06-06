@@ -1,6 +1,9 @@
 import React from "react";
 import { Badge } from "./Badge";
-import { TUseBadgeInputProps, useBadgeInput } from "./useBadgeInput";
+import {
+  TUseBadgeInputProps,
+  useBadgeInputComponent,
+} from "./useBadgeInputComponent";
 
 export type TBadgeInputProps = {
   label?: string;
@@ -10,7 +13,8 @@ export const BadgeInput: React.FunctionComponent<TBadgeInputProps> = (
   props
 ) => {
   const { label, disabled, value } = props;
-  const { deleteValue, onKeyDown, error, classNames } = useBadgeInput(props);
+  const { deleteValue, onKeyDown, error, classNames } =
+    useBadgeInputComponent(props);
 
   return (
     <div className={classNames}>

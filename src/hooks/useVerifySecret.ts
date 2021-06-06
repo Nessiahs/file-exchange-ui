@@ -7,6 +7,7 @@ import { TJobType } from "./useJobDetail";
 export const useVerifySecret = (secret: string | null, jobType: TJobType) => {
   const [isValid, setValid] = useState<boolean | null>(null);
   const [progress, setProgress] = useState(false);
+
   const { token } = useParams();
   const navigate = useNavigate();
 
