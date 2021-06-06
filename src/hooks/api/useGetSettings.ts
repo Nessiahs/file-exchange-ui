@@ -14,7 +14,7 @@ export const useGetSettings = (
         const response = await axios.get(`/admin/setting/${setting}/`);
 
         if (response.data === null) {
-          return;
+          return setResult(null);
         }
 
         setResult(JSON.parse(response.data.settings));
@@ -24,5 +24,6 @@ export const useGetSettings = (
     };
     fetch();
   }, [setting, renderId, setResult]);
+
   return result;
 };

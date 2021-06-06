@@ -18,10 +18,10 @@ const getRefCurrent = () => {
 afterEach(cleanup);
 
 test("Is not open wrapper height equal 0", () => {
-  const ref: React.RefObject<HTMLDivElement> = {
+  const ref = {
     current: getRefCurrent(),
   };
-  const { result } = renderHook(() => useAnimatedHeight(ref, false));
+  renderHook(() => useAnimatedHeight(ref, false));
 
   if (!ref || !ref.current) {
     throw new Error("No ref given");
@@ -36,7 +36,7 @@ test("Is open wrapper height equal scrollHeight", () => {
   };
 
   jest.spyOn(ref.current.classList, "remove");
-  const { result } = renderHook(() => useAnimatedHeight(ref, true));
+  renderHook(() => useAnimatedHeight(ref, true));
 
   expect(ref.current.classList.remove).toHaveBeenCalledWith("hidden");
 });
