@@ -18,22 +18,21 @@ Beinhaltet:
 
 ## Features:
 
-- Es werden keine Cookies benötig
+- Es werden keine Cookies benötigt
 - Dateien werden im Backend verschlüsselt gespeichert
 - Jede Installation hat ihre eigene Schlüssel zur Verschlüsselung
 - Datenaustausch einfach per Link
 - Zusätzlich kann jeder Upload / Download über ein Secret abgesichert werden
-- Zugriff auf die Backend-Api kann nur für bestimmte Ip´s freigegeben werden
+- Zugriff auf die Backend-Api kann nur für bestimmte IP-Adressen freigegeben werden
 - Es gibt Admin und User Rolle für das Backend
 
-## Best Practice Server setup
+## Best Practice Server Setup
 
-Es wird Empfohlen dass, das Frontend seperat von der Api gehostet wird, dafür benutze ich folgendes Setup:
+Es wird Empfohlen dass, das Frontend separat von der Api gehostet wird. Dafür benutze ich folgendes Setup:
 
-NGINX als SSL-Terminierung. Dahinter dann ein Node.js Server mit dem Backend und ein weiter NGINX für das Frontend. Hierzu eignet sich
-ein Docker-Setup sehr gut.
+NGINX als SSL-Terminierung. Dahinter dann ein Node.js Server mit dem Backend und ein weiterer NGINX für das Frontend. Hierzu eignet sich ein Docker-Setup sehr gut.
 
-[docker-compose](https://github.com/Nessiahs/file-exchange-compose), die dieses Setup zu verfügung stellt
+[docker-compose](https://github.com/Nessiahs/file-exchange-compose), die dieses Setup zu Verfügung stellt
 
 ## Umgebungsvariablen
 
@@ -49,7 +48,7 @@ Pfad zur API für die Ajax-Requests
 
 ## Installation
 
-Es wird ein System mit Node.js Version 14 benötig.
+Es wird ein System mit Node.js Version 14 benötigt.
 
 ```bash
   git clone https://github.com/Nessiahs/file-exchange-ui.git
@@ -58,7 +57,7 @@ Es wird ein System mit Node.js Version 14 benötig.
   yarn build
 ```
 
-Im Ordner `build` befinden sich dann die Files, die auf den Webserver übertragen werden müssen
+Im Ordner `build` befinden sich dann alle Files, die auf den Webserver zu übertragen sind.
 
 ## Inbetriebnahme
 
@@ -66,7 +65,7 @@ Die Oberfläche zum Verwalten der Down/Uploads ist unter dem Pfad `/admin/` zu f
 
 ![Installation](./screenshots/installation.png)
 
-Hier wird dann der erste Admin-Benutzer eingerichtet. Die EMail ist der Benutzername. Nach Eingabe dieser Daten und Übermittlung, wird auf dem Server die Datenbank eingerichtet und ein Schlüssel für die Verschlüsselung erstellt. Nach der Einrichtung sollte die Datenbank gesichert werden, geht dieser Schlüssel verloren, kann keine der Dateien mehr entschlüsselt werden.
+Nach Eingabe dieser Daten und Übermittlung, wird auf dem Server die Datenbank eingerichtet und ein Schlüssel für die Verschlüsselung erstellt. Nach der Einrichtung sollte die Datenbank gesichert werden. Geht dieser Schlüssel verloren, kann keine der Dateien mehr entschlüsselt werden.
 
 ## Screenshots
 
