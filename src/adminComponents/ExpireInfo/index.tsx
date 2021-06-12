@@ -5,6 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import React from "react";
+import { getFormattedTimeByZone, getTimeByZone } from "../../utils/dateUtils";
 
 type TExpireInfo = {
   expires?: string | null;
@@ -13,14 +14,14 @@ type TExpireInfo = {
 export const ExpireInfo: React.FunctionComponent<TExpireInfo> = ({
   expires,
 }) => {
-  if (expires === null) {
+  if (!expires) {
     return <>Kein Ablaufdatum</>;
   }
 
   let icon = faCalendarCheck;
   let color = "text-green-700";
   const date = moment(expires);
-  if (date < moment()) {
+  if (getTimeByZone(expires) < moment()) {
     icon = faCalendarTimes;
     color = "text-red-700";
   }
@@ -30,7 +31,7 @@ export const ExpireInfo: React.FunctionComponent<TExpireInfo> = ({
       <div>
         <FontAwesomeIcon icon={icon} />
       </div>
-      <div className="ml-2 pt-0.5">{moment(expires).format("L")}</div>
+      <div className="ml-2 pt-0.5">{getFormattedTimeByZone(expires)}</div>
     </div>
   );
 };

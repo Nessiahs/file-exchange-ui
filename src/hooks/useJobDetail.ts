@@ -4,9 +4,9 @@ export type TJob = {
   id?: number;
   jobType: TJobType;
   jobName: string;
-  secret?: string | null;
-  expires?: string | null;
-  created?: string;
+  secret: string | null;
+  expires: string | null;
+  created: string;
   token: string;
   createdBy: number;
   files: number;

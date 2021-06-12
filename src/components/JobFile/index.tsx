@@ -1,6 +1,5 @@
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment";
 import prettyBytes from "pretty-bytes";
 import React, { useEffect, useState } from "react";
 import { AdminDelete } from "../../adminComponents/AdminDelete";
@@ -9,6 +8,7 @@ import { hover } from "../../config/classNames";
 import { useDeleteFile } from "../../hooks/useDeleteFile";
 import { useDownloadFile } from "../../hooks/useDownloadFile";
 import { TFiles, TJobType } from "../../hooks/useJobDetail";
+import { getFormattedTimeByZone } from "../../utils/dateUtils";
 
 type TJobFileProps = {
   refresh?: () => void;
@@ -62,7 +62,7 @@ export const JobFile: React.FunctionComponent<TJobFileProps> = ({
   return (
     <div className={`flex p-2 ${hover}`}>
       <div className="flex-grow">{filename}</div>
-      <div className="w-32">{moment(created).format("DD.MM.YYYY mm:HH")}</div>
+      <div className="w-32">{getFormattedTimeByZone(created)}</div>
       <div className="w-20 text-right pr-2">{prettyBytes(size)}</div>
       <AdminDelete onDelete={() => setDeleteId(id)} progress={progress}>
         <DeleteFileMessage filename={filename} />

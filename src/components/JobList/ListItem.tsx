@@ -1,5 +1,4 @@
 import { useNavigate } from "@reach/router";
-import moment from "moment";
 import React from "react";
 import { ExpireInfo } from "../../adminComponents/ExpireInfo";
 import { SecretIcon } from "../../adminComponents/SecretIcon";
@@ -9,6 +8,7 @@ import {
   ROUTE_ADMIN_UPLOADS_DETAILS,
 } from "../../config/routes";
 import { TJob } from "../../hooks/useJobDetail";
+import { getFormattedTimeByZone } from "../../utils/dateUtils";
 
 export const ListItem: React.FunctionComponent<TJob> = ({
   jobName,
@@ -31,9 +31,7 @@ export const ListItem: React.FunctionComponent<TJob> = ({
         navigate(uri);
       }}>
       <div className="flex-grow p-1">{jobName}</div>
-      <div className="w-40 p-1">
-        {moment(created).format("DD.MM.YYYY HH:MM")}
-      </div>
+      <div className="w-40 p-1">{getFormattedTimeByZone(created)}</div>
       <div className="w-40 p-1">
         <ExpireInfo expires={expires} />
       </div>

@@ -24,7 +24,7 @@ export const UserList: React.FunctionComponent<TUserlistProps> = ({
         <div className="w-8 p-1">id</div>
         <div className="flex-grow p-1">User</div>
         <div className="w-36 p-1">Erstellt</div>
-        <div className="w-28 p-1">Letzter Login</div>
+        <div className="w-36 p-1">Letzter Login</div>
         <div className="w-16 p-1"> Admin</div>
         <div className="w-10 p-1"></div>
       </div>
