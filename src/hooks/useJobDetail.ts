@@ -4,8 +4,8 @@ export type TJob = {
   id?: number;
   jobType: TJobType;
   jobName: string;
-  secret: string | null;
-  expires: string | null;
+  secret: string;
+  expires: string;
   created: string;
   token: string;
   createdBy: number;

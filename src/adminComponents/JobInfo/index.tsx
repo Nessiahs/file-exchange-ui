@@ -2,6 +2,7 @@ import React from "react";
 import { useSetCreatedBy } from "../../hooks/adminContext/useSetCreatedBy";
 import { TJob } from "../../hooks/useJobDetail";
 import { getFormattedTimeByZone } from "../../utils/dateUtils";
+import { CopyButton } from "../CopyButton";
 import { ExpireInfo } from "../ExpireInfo";
 import { JobLink } from "../JobLink";
 import { JobTypeIcon } from "../JobTypeIcon";
@@ -28,7 +29,10 @@ export const JobInfo: React.FunctionComponent<TJobInfo> = ({ data }) => {
         <JobTypeIcon jobType={jobType} />
       </InfoBox>
       <InfoBox title="Secret">
-        <SecretIcon secret={secret} /> {secret}
+        <div className="flex">
+          <SecretIcon secret={secret} /> <div className="mx-2">{secret}</div>
+          <CopyButton toCopy={secret} />
+        </div>
       </InfoBox>
       <InfoBox title="Link">
         <JobLink token={token} jobType={jobType} />
