@@ -25,9 +25,10 @@ export const Create: React.FunctionComponent<CreateProps> = ({ type }) => {
   const [disabled, setDisabled] = useState(true);
   const [data, setData] = useState<TJobData | null>(null);
   const { progress, link } = useCreateJob(data);
+  const [privateJob, setPrivate] = useState(false);
 
   const onClick = () => {
-    if (!jobType) {
+    if (!jobType || !expires) {
       return;
     }
 
@@ -35,6 +36,7 @@ export const Create: React.FunctionComponent<CreateProps> = ({ type }) => {
       jobType,
       jobName,
       expires,
+      privateJob,
     });
   };
 
@@ -53,6 +55,8 @@ export const Create: React.FunctionComponent<CreateProps> = ({ type }) => {
   useEffect(() => {
     if (link) {
       setJobName("");
+      setPrivate(false);
+      setExpires(2);
     }
   }, [link]);
 
@@ -119,6 +123,19 @@ export const Create: React.FunctionComponent<CreateProps> = ({ type }) => {
         </select>
         <div className="text-xs">
           Der Zeitraum, wie lange der Link gültigkeit haben soll
+        </div>
+      </div>
+      <div className="py-2">
+        <div className="flex">
+          <label>Privat</label>
+          <input
+            type="checkbox"
+            checked={privateJob}
+            onChange={() => setPrivate(!privateJob)}
+          />
+        </div>
+        <div className="text-xs">
+          Dateien und Auftrag sind nur für Sie sichtbar
         </div>
       </div>
       <div className="py-2 text-right">

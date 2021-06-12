@@ -6,7 +6,8 @@ import { ROUTE_ADMIN_DOWNLOAD_DETAILS } from "../config/routes";
 export type TJobData = {
   jobType: "upload" | "download";
   jobName: string;
-  expires?: number;
+  expires: number;
+  privateJob: boolean;
 };
 
 export const useCreateJob = (data: TJobData | null) => {
