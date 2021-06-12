@@ -4,11 +4,9 @@ import {
   faHome,
   faSignOutAlt,
   faUpload,
-  faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import {
-  ROUTE_ADMIN_CREATE,
   ROUTE_ADMIN_DOWNLODS,
   ROUTE_ADMIN_LOGOUT,
   ROUTE_ADMIN_SECURITY,
@@ -40,23 +38,17 @@ export const adminNavigation: TAdminNavigation[] = [
       link: "/",
     },
   },
+
   {
     group: {
-      title: "Erstellen",
-      icon: faUserShield,
-      link: ROUTE_ADMIN_CREATE,
-    },
-  },
-  {
-    group: {
-      title: "Uploads",
+      title: "Empfangene Dateien",
       icon: faUpload,
       link: ROUTE_ADMIN_UPLOADS,
     },
   },
   {
     group: {
-      title: "Downloads",
+      title: "Gesendete Dateien",
       icon: faDownload,
       link: ROUTE_ADMIN_DOWNLODS,
     },

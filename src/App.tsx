@@ -55,7 +55,7 @@ function App() {
             </Verify>
 
             <Admin path="admin">
-              <Create path={ROUTE_ADMIN_CREATE} />
+              <Create path={`${ROUTE_ADMIN_CREATE}/:type`} />
               <DownloadList path={ROUTE_ADMIN_DOWNLODS} />
               <DownloadsDetails
                 path={`${ROUTE_ADMIN_DOWNLOAD_DETAILS}/:token/`}
