@@ -37,9 +37,8 @@ function App() {
   return (
     <div className="h-full w-full">
       <div className="h-full flex flex-col">
-        <Router className="bg-gray-800">
-          <Header default />
-        </Router>
+        <Header />
+
         <div className="flex flex-1 p-1">
           <Router className="w-full">
             <ErrorMessage path={ROUTE_USER_ERROR} />

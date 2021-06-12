@@ -1,14 +1,9 @@
-import { RouteComponentProps } from "@reach/router";
 import React from "react";
-import { Logout } from "./Logout";
 
-export const Header: React.FunctionComponent<RouteComponentProps> = () => {
+export const Header: React.FunctionComponent = () => {
   return (
-    <div className="container mx-auto text-white p-1 flex justify-between">
-      <div>File-Exchange</div>
-      <div>
-        <Logout />
-      </div>
+    <div className="bg-gray-800">
+      <div className="container mx-auto text-white p-1">File-Exchange</div>
     </div>
   );
 };
