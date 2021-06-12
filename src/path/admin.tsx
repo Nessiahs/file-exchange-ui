@@ -1,8 +1,9 @@
 import { RouteComponentProps, useLocation } from "@reach/router";
 import React, { useEffect, useState } from "react";
+import { Login } from "../adminComponents/Login";
 import { Navigation } from "../adminComponents/Navigation";
-import { Login } from "../components/Login";
 import { useIsLoggedIn } from "../hooks/useIsLogedIn";
+import { getId } from "../utils/getId";
 
 type TAdminContext = {
   isAdmin: 0 | 1;
@@ -17,7 +18,11 @@ export const Admin: React.FunctionComponent<RouteComponentProps> = ({
   children,
 }) => {
   const location = useLocation();
-  const { isLoggedIn, isAdmin, id } = useIsLoggedIn(location.pathname);
+  const [renderId, setRenderId] = useState(getId());
+  const { isLoggedIn, isAdmin, id } = useIsLoggedIn(
+    location.pathname,
+    renderId
+  );
   const [hideLogin, setHide] = useState<boolean | null>(null);
   const [responseUser, setResponseUser] = useState(-1);
 
@@ -30,7 +35,14 @@ export const Admin: React.FunctionComponent<RouteComponentProps> = ({
   }
 
   if (!hideLogin) {
-    return <Login hideLogin={(l: boolean) => setHide(l)} />;
+    return (
+      <Login
+        hideLogin={(l: boolean) => {
+          setRenderId(getId());
+          setHide(l);
+        }}
+      />
+    );
   }
 
   return (
