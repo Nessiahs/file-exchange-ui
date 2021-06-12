@@ -22,7 +22,7 @@ export const Backdrop: React.FunctionComponent<TBackdropProps> = ({
 
   return createPortal(
     <div
-      className="absolute inset-0 backdrop-filter backdrop-grayscale backdrop-blur"
+      className="absolute inset-0 backdrop-filter backdrop-grayscale backdrop-blur-sm"
       onClick={() => {
         if (closeOnClick) {
           closeOnClick();
