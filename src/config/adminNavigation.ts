@@ -2,6 +2,7 @@ import {
   faCogs,
   faDownload,
   faHome,
+  faSignOutAlt,
   faUpload,
   faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +10,7 @@ import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import {
   ROUTE_ADMIN_CREATE,
   ROUTE_ADMIN_DOWNLODS,
+  ROUTE_ADMIN_LOGOUT,
   ROUTE_ADMIN_SECURITY,
   ROUTE_ADMIN_UPLOADS,
   ROUTE_ADMIN_USERS,
@@ -75,5 +77,12 @@ export const adminNavigation: TAdminNavigation[] = [
         link: ROUTE_ADMIN_SECURITY,
       },
     ],
+  },
+  {
+    group: {
+      title: "Abmelden",
+      icon: faSignOutAlt,
+      link: ROUTE_ADMIN_LOGOUT,
+    },
   },
 ];
