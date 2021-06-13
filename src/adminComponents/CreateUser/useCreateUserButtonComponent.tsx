@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { CreateUserContext } from ".";
 import { useCreateUser } from "../../hooks/useCreateUser";
 
+type TIsAdmin = 0 | 1;
+const isAdminValues: TIsAdmin[] = [0, 1];
 export const useCreateUserButtonComponent = (onSuccess: () => void) => {
   const {
     email,
@@ -17,7 +19,7 @@ export const useCreateUserButtonComponent = (onSuccess: () => void) => {
   const [data, setData] = useState<{
     email: string;
     password: string;
-    isAdmin: 0 | 1;
+    isAdmin: TIsAdmin;
   }>({
     email: "",
     password: "",
@@ -56,9 +58,10 @@ export const useCreateUserButtonComponent = (onSuccess: () => void) => {
   };
 
   const onClick = () => {
-    if (!email || !password || typeof isAdmin !== "boolean") {
+    if (!email || !password || !isAdmin || !isAdminValues.includes(isAdmin)) {
       return;
     }
+
     setData({ email, password, isAdmin });
   };
 
