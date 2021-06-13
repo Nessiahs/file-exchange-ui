@@ -1,5 +1,5 @@
 import prettyBytes from "pretty-bytes";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { useDiskChart } from "../../hooks/api/useDiskChart";
 import { Tile } from "../Tile";
