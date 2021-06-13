@@ -17,16 +17,12 @@ export const JobSpaceChart: React.FunctionComponent = () => {
   const [displayedData, setDisplayedData] = useState<TChart[]>([]);
 
   useEffect(() => {
-    const d = [];
-    for (const key in chartData) {
-      if (!chartData.hasOwnProperty(key)) {
-        continue;
-      }
-      const { size, color } = chartData[key];
+    const d: TChart[] = [];
+    for (const data of chartData) {
       d.push({
-        value: size,
-        color,
-        label: prettyBytes(size),
+        value: data.size,
+        color: data.color,
+        label: prettyBytes(data.size),
       });
     }
     setDisplayedData(d);
