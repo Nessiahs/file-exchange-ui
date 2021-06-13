@@ -21,7 +21,7 @@ export const Create: React.FunctionComponent<CreateProps> = ({ type }) => {
   const [jobType, setJobType] = useState<TJobType>();
   const [title, setTitle] = useState("Job");
   const [jobName, setJobName] = useState("");
-  const [expires, setExpires] = useState<number>();
+  const [expires, setExpires] = useState<number>(expireTimes[0]);
   const [disabled, setDisabled] = useState(true);
   const [data, setData] = useState<TJobData | null>(null);
   const { progress, link } = useCreateJob(data);
@@ -56,7 +56,7 @@ export const Create: React.FunctionComponent<CreateProps> = ({ type }) => {
     if (link) {
       setJobName("");
       setPrivate(false);
-      setExpires(2);
+      setExpires(expireTimes[0]);
     }
   }, [link]);
 
