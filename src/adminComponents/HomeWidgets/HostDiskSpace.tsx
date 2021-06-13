@@ -1,16 +1,16 @@
 import prettyBytes from "pretty-bytes";
 import React, { useContext } from "react";
-import { useHddInformation } from "../../hooks/useHddInformation";
+import { useHddInformation } from "../../hooks/api/useHddInformation";
 import { AdminContext } from "../../path/admin";
 import { Tile } from "../Tile";
 
 export const HostDiskSpace: React.FunctionComponent = () => {
-  const hddData = useHddInformation();
+  const { size, free } = useHddInformation();
   const context = useContext(AdminContext);
-  if (hddData === null || !context || context.isAdmin === 0) {
+  if (!size || !free || !context || context.isAdmin === 0) {
     return null;
   }
-  const { size, free } = hddData.disk;
+
   return (
     <Tile>
       Aktuelle HDD Daten: <br />

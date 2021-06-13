@@ -2,18 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 type TResponse = {
-  disk: {
-    size: number;
-    free: number;
-  };
-  jobs: {
-    all: number;
-    byJob: Record<string, number>;
-  };
+  size: number | null;
+  free: number | null;
+};
+
+const initState = {
+  size: null,
+  free: null,
 };
 
 export const useHddInformation = (fetchId: string = "") => {
-  const [information, setInformation] = useState<TResponse | null>(null);
+  const [information, setInformation] = useState<TResponse>(initState);
 
   useEffect(() => {
     const fetch = async () => {
@@ -22,7 +21,7 @@ export const useHddInformation = (fetchId: string = "") => {
 
         setInformation(response.data);
       } catch (error) {
-        setInformation(null);
+        setInformation(initState);
       }
     };
     fetch();
