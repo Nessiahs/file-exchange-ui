@@ -2,10 +2,10 @@ import { navigate } from "@reach/router";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { STORAGE_KEY } from "./storage";
 
-let token: string | null = sessionStorage.getItem(STORAGE_KEY);
-const statusForbidden = 401;
+const statusUnauthorized = 401;
 axios.interceptors.request.use(
   (config: AxiosRequestConfig): AxiosRequestConfig => {
+    const token: string | null = sessionStorage.getItem(STORAGE_KEY);
     config.baseURL = process.env.REACT_APP_API_URI ?? "/";
     config.headers = {
       ...config.headers,
@@ -23,19 +23,20 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => {
+    let token: string | null;
     token = response.headers["x-jwt-token"];
     if (token) {
       sessionStorage.setItem(STORAGE_KEY, token);
     } else {
-      sessionStorage.removeItem(STORAGE_KEY);
+      sessionStorage.clear();
     }
     return response;
   },
   function (error) {
     if (error.response.data.installed === false) {
       navigate("/install/");
-    } else if (error.response.statusCode === statusForbidden) {
-      sessionStorage.removeItem(STORAGE_KEY);
+    } else if (error.response.statusCode === statusUnauthorized) {
+      sessionStorage.clear();
       window.location.reload();
       return;
     }

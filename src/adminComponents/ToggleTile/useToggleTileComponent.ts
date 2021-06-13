@@ -6,7 +6,7 @@ export const useToggleTileComponent = (
   contentRef: React.RefObject<HTMLDivElement>,
   iconRef: React.RefObject<HTMLElement>
 ) => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(true);
   useAnimatedHeight(contentRef, isOpen);
   useRotateEffect(iconRef, isOpen);
   const toggle = () => {

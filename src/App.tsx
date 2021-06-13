@@ -12,6 +12,7 @@ import {
   ROUTE_ADMIN_CREATE,
   ROUTE_ADMIN_DOWNLOAD_DETAILS,
   ROUTE_ADMIN_DOWNLODS,
+  ROUTE_ADMIN_LOGOUT,
   ROUTE_ADMIN_SECURITY,
   ROUTE_ADMIN_UPLOADS,
   ROUTE_ADMIN_UPLOADS_DETAILS,
@@ -27,6 +28,7 @@ import { VerifyInstall } from "./install/VerifyInstall";
 import { Create } from "./pages/admin/Create";
 import { DownloadsDetails } from "./pages/admin/DownloadDetails";
 import { DownloadList } from "./pages/admin/DownloadList";
+import { Logout } from "./pages/admin/Logout";
 import { Security } from "./pages/admin/Security";
 import { UploadDetail } from "./pages/admin/UploadDetail";
 import { UploadList } from "./pages/admin/UploadList";
@@ -37,9 +39,8 @@ function App() {
   return (
     <div className="h-full w-full">
       <div className="h-full flex flex-col">
-        <Router className="bg-gray-800">
-          <Header default />
-        </Router>
+        <Header />
+
         <div className="flex flex-1 p-1">
           <Router className="w-full">
             <ErrorMessage path={ROUTE_USER_ERROR} />
@@ -54,7 +55,7 @@ function App() {
             </Verify>
 
             <Admin path="admin">
-              <Create path={ROUTE_ADMIN_CREATE} />
+              <Create path={`${ROUTE_ADMIN_CREATE}/:type`} />
               <DownloadList path={ROUTE_ADMIN_DOWNLODS} />
               <DownloadsDetails
                 path={`${ROUTE_ADMIN_DOWNLOAD_DETAILS}/:token/`}
@@ -63,7 +64,8 @@ function App() {
               <UploadDetail path={`${ROUTE_ADMIN_UPLOADS_DETAILS}/:token/`} />
               <Users path={ROUTE_ADMIN_USERS} />
               <Security path={ROUTE_ADMIN_SECURITY} />
-              <AdminHome path="/" />
+              <Logout path={ROUTE_ADMIN_LOGOUT} />
+              <AdminHome default />
             </Admin>
 
             <VerifyInstall path="install">

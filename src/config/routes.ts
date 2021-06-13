@@ -6,7 +6,7 @@ export const ROUTE_ADMIN_DOWNLODS = "downloads";
 export const ROUTE_ADMIN_UPLOADS = "uploads";
 export const ROUTE_ADMIN_UPLOADS_DETAILS = "uploads-details";
 export const ROUTE_ADMIN_SECURITY = "security";
-
+export const ROUTE_ADMIN_LOGOUT = "logout";
 export const ROUTE_USER_ERROR = "error";
 export const ROUTE_USER_EXPIRED = "expired";
 
