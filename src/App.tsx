@@ -5,6 +5,7 @@ import { AdminHome } from "./adminComponents/AdminHome";
 import { ErrorMessage } from "./components/ErrorMessage";
 import { ExpiredMessage } from "./components/ExpiredMessage";
 import { Header } from "./components/Header";
+import { Toast } from "./components/Toast";
 import { UserDownloadList } from "./components/UserDownloadList";
 import { Verify } from "./components/Verify";
 import "./config/axios";
@@ -91,6 +92,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Toast />
     </div>
   );
 }

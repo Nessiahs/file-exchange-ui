@@ -1,6 +1,7 @@
 import { useParams } from "@reach/router";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { toast } from "../components/Toast";
 
 export const useUpload = (
   file: File,
@@ -24,15 +25,29 @@ export const useUpload = (
 
     const formData = new FormData();
     formData.append("file", file);
-    axios.post(url, formData, {
-      onUploadProgress: (progressEvent) => {
-        const percentCompleted = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
+    const process = async () => {
+      try {
+        await axios.post(url, formData, {
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
 
-        setProgress(percentCompleted);
-      },
-    });
+            setProgress(percentCompleted);
+          },
+        });
+        toast(`Datei ${file.name} erfolgreich übertragen`, {
+          autoClose: 5000,
+          intent: "success",
+        });
+      } catch (error) {
+        toast(`Fehler beim hochladen der Datei ${file.name}`, {
+          autoClose: null,
+          intent: "danger",
+        });
+      }
+    };
+    process();
   }, [upload, file, type, token, setProgress]);
 
   return progress;
