@@ -10,7 +10,7 @@ export const useIpRestrictionComponent = () => {
   const [useProxy, setProxy] = useState(false);
   const [proxyHeader, setProxyHeader] = useState<string[]>([]);
   const [saveData, setSaveData] = useState<TIpRestriction | null>(null);
-  const { progress, error } = useSaveSetting("ipRestrictions", saveData);
+  const { progress } = useSaveSetting("ipRestrictions", saveData);
   const save = () => {
     setSaveData({ restricted, allowedIp, useProxy, proxyHeader });
   };

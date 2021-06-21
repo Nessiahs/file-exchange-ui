@@ -20,7 +20,6 @@ export const ExpireInfo: React.FunctionComponent<TExpireInfo> = ({
 
   let icon = faCalendarCheck;
   let color = "text-green-700";
-  const date = moment(expires);
   if (getTimeByZone(expires) < moment()) {
     icon = faCalendarTimes;
     color = "text-red-700";

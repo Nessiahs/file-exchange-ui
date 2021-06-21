@@ -64,13 +64,6 @@ export const Toast: React.FunctionComponent<TToastProps> = ({
   pauseOnHover = true,
   intent = "none",
 }) => {
-  const defaultConf = {
-    autoClose,
-    position,
-    pauseOnHover,
-    intent,
-  };
-
   const [toasts, setToast] = useState<TToasts[]>([]);
   const close = (id: string) => {
     setToast(toasts.filter((i) => i.id !== id));
@@ -78,10 +71,17 @@ export const Toast: React.FunctionComponent<TToastProps> = ({
 
   _toast = useCallback(
     (t: TToasts) => {
+      const defaultConf = {
+        autoClose,
+        position,
+        pauseOnHover,
+        intent,
+      };
+
       const item = { ...defaultConf, ...t };
       setToast([item, ...toasts]);
     },
-    [defaultConf, setToast, toasts]
+    [toasts, autoClose, position, pauseOnHover, intent, setToast]
   );
 
   if (toasts.length === 0) {

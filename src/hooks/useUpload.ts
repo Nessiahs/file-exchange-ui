@@ -51,7 +51,7 @@ export const useUpload = (
       }
     };
     process();
-  }, [upload, file, type, token, setProgress]);
+  }, [upload, file, type, token, setProgress, onFinish]);
 
   return progress;
 };

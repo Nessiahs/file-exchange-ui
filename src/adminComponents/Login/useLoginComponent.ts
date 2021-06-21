@@ -14,7 +14,7 @@ export const useLoginComponent = (hideLogin: (l: boolean) => void) => {
     password: null,
   });
   const [isValidEmail, setValidEmail] = useState(true);
-  const { isValid, progress, isAdmin } = useLogin(credentials);
+  const { isValid, progress } = useLogin(credentials);
   const [isDisabled, setDisabled] = useState(true);
   const [passwordOpacity, setPasswordOpacity] = useState(0);
   const [emailOpacity, setEmailOpacity] = useState(0);
