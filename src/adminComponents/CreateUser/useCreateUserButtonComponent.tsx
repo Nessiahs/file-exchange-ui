@@ -58,7 +58,12 @@ export const useCreateUserButtonComponent = (onSuccess: () => void) => {
   };
 
   const onClick = () => {
-    if (!email || !password || !isAdmin || !isAdminValues.includes(isAdmin)) {
+    if (
+      !email ||
+      !password ||
+      typeof isAdmin === "undefined" ||
+      !isAdminValues.includes(isAdmin)
+    ) {
       return;
     }
 
