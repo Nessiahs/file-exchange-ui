@@ -6,7 +6,8 @@ import { toast } from "../components/Toast";
 export const useUpload = (
   file: File,
   upload: boolean,
-  type: "admin" | "customer" = "customer"
+  type: "admin" | "customer" = "customer",
+  onFinish: () => void
 ) => {
   const [progress, setProgress] = useState(0);
   const { token } = useParams();
@@ -45,6 +46,8 @@ export const useUpload = (
           autoClose: null,
           intent: "danger",
         });
+      } finally {
+        onFinish();
       }
     };
     process();

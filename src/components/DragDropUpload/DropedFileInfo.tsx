@@ -19,7 +19,7 @@ export const DropedFileInfo: React.FunctionComponent<TFileInfoProps> = ({
   onDelete,
   onFinish,
 }) => {
-  const progress = useUpload(file, upload, uploadType);
+  const progress = useUpload(file, upload, uploadType, onFinish);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,6 @@ export const DropedFileInfo: React.FunctionComponent<TFileInfoProps> = ({
       return;
     }
     setDone(true);
-    onFinish();
   }, [progress, done, onFinish]);
 
   return (
