@@ -8,5 +8,9 @@ export const getTimeByZone = (utcTime?: string) => {
 };
 
 export const getFormattedTimeByZone = (utcTime: string) => {
-  return getTimeByZone(utcTime).format("DD.MM.YYYY HH:mm");
+  const f = getTimeByZone(utcTime);
+  if (f.isValid()) {
+    return f.format("DD.MM.YYYY HH:mm");
+  }
+  return "";
 };
