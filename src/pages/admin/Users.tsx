@@ -15,7 +15,7 @@ export const Users: React.FunctionComponent<RouteComponentProps> = () => {
   const [renderId, setRenderId] = useState(uuid());
   return (
     <Tile>
-      <Backdrop isOpen={addUser} closeOnClick={() => setAddUser(false)}>
+      <Backdrop isOpen={addUser}>
         <Modal
           onClose={() => {
             setAddUser(false);
