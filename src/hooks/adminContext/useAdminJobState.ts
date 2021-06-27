@@ -14,19 +14,23 @@ type TState = {
   expiredJobs: TJobState | null;
 };
 
+const defaultState: TState = {
+  info: null,
+  jobs: null,
+  expiredJobs: null,
+};
+
 export const useAdminJobState = () => {
-  const [state, setState] = useState<TState>({
-    info: null,
-    jobs: null,
-    expiredJobs: null,
-  });
+  const [state, setState] = useState<TState>(defaultState);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const result = await axios.get("/admin/job-state/");
         setState(result.data);
-      } catch (error) {}
+      } catch (error) {
+        setState(defaultState);
+      }
     };
 
     fetch();

@@ -31,7 +31,7 @@ export const AdminInfo: React.FunctionComponent = () => {
       </div>
       <SheduledInfo name="Festplatteninfo" {...info} />
       <SheduledInfo name="Job Info" {...jobs} />
-      <SheduledInfo name="Abgelaufene Dateien Löschen" {...expiredJobs} />
+      <SheduledInfo name="Abgelaufene Dateien löschen" {...expiredJobs} />
     </Tile>
   );
 };

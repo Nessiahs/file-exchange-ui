@@ -1,3 +1,4 @@
+import React from "react";
 import { TJobState } from "../../hooks/adminContext/useAdminJobState";
 import { getFormattedTimeByZone } from "../../utils/dateUtils";
 
@@ -7,7 +8,6 @@ type TSheduledInfoProps = {
 
 export const SheduledInfo: React.FunctionComponent<TSheduledInfoProps> = ({
   name,
-  state,
   lastExecute,
   executed,
   failCount,
