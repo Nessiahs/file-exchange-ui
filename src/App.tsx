@@ -14,7 +14,7 @@ import {
   ROUTE_ADMIN_DOWNLOAD_DETAILS,
   ROUTE_ADMIN_DOWNLODS,
   ROUTE_ADMIN_LOGOUT,
-  ROUTE_ADMIN_SECURITY,
+  ROUTE_ADMIN_SETTINGS,
   ROUTE_ADMIN_UPLOADS,
   ROUTE_ADMIN_UPLOADS_DETAILS,
   ROUTE_ADMIN_USERS,
@@ -30,7 +30,7 @@ import { Create } from "./pages/admin/Create";
 import { DownloadsDetails } from "./pages/admin/DownloadDetails";
 import { DownloadList } from "./pages/admin/DownloadList";
 import { Logout } from "./pages/admin/Logout";
-import { Security } from "./pages/admin/Security";
+import { Security } from "./pages/admin/Settings";
 import { UploadDetail } from "./pages/admin/UploadDetail";
 import { UploadList } from "./pages/admin/UploadList";
 import { Users } from "./pages/admin/Users";
@@ -64,7 +64,7 @@ function App() {
               <UploadList path={ROUTE_ADMIN_UPLOADS} />
               <UploadDetail path={`${ROUTE_ADMIN_UPLOADS_DETAILS}/:token/`} />
               <Users path={ROUTE_ADMIN_USERS} />
-              <Security path={ROUTE_ADMIN_SECURITY} />
+              <Security path={ROUTE_ADMIN_SETTINGS} />
               <Logout path={ROUTE_ADMIN_LOGOUT} />
               <AdminHome default />
             </Admin>

@@ -9,7 +9,7 @@ import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import {
   ROUTE_ADMIN_DOWNLODS,
   ROUTE_ADMIN_LOGOUT,
-  ROUTE_ADMIN_SECURITY,
+  ROUTE_ADMIN_SETTINGS,
   ROUTE_ADMIN_UPLOADS,
   ROUTE_ADMIN_USERS,
 } from "./routes";
@@ -65,8 +65,8 @@ export const adminNavigation: TAdminNavigation[] = [
         link: ROUTE_ADMIN_USERS,
       },
       {
-        text: "Sicherheit",
-        link: ROUTE_ADMIN_SECURITY,
+        text: "Einstellungen",
+        link: ROUTE_ADMIN_SETTINGS,
       },
     ],
   },
