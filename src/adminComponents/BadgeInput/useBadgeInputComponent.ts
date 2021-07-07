@@ -20,6 +20,11 @@ export const useBadgeInputComponent = (props: TUseBadgeInputProps) => {
   if (disabled) {
     classNames += " cursor-not-allowed";
   }
+
+  if (classNames) {
+    classNames = classNames.trim();
+  }
+
   const deleteValue = (d: string) => {
     const val = value.filter((v) => v !== d);
     setValue(val);
