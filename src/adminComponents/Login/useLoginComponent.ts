@@ -13,11 +13,9 @@ export const useLoginComponent = (hideLogin: (l: boolean) => void) => {
     email: null,
     password: null,
   });
-  const [isValidEmail, setValidEmail] = useState(true);
+  const [isValidEmail, setValidEmail] = useState<boolean>();
   const { isValid, progress } = useLogin(credentials);
   const [isDisabled, setDisabled] = useState(true);
-  const [passwordOpacity, setPasswordOpacity] = useState(0);
-  const [emailOpacity, setEmailOpacity] = useState(0);
   const [formClassName, setFormClassName] = useState(defaultFormClassName);
 
   useEffect(() => {
@@ -55,24 +53,10 @@ export const useLoginComponent = (hideLogin: (l: boolean) => void) => {
   };
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    let opacity = 0;
-    if (value) {
-      opacity = 100;
-    }
-
-    setPasswordOpacity(opacity);
-    setPassword(value);
+    setPassword(e.currentTarget.value);
   };
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    let opacity = 0;
-    if (value) {
-      opacity = 100;
-    }
-
-    setEmailOpacity(opacity);
     setEmail(e.currentTarget.value);
   };
 
@@ -85,8 +69,7 @@ export const useLoginComponent = (hideLogin: (l: boolean) => void) => {
     email,
     password,
     isDisabled,
-    emailOpacity,
-    passwordOpacity,
+
     isValidEmail,
     formClassName,
     onSubmit,

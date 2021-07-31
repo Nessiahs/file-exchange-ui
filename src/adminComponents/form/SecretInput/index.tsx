@@ -8,6 +8,7 @@ type TsecretInputProps = {
   value: string;
   isValid?: boolean;
   label?: string;
+  placeholder?: string;
   helpText?: string;
   disabled?: boolean;
   focusOnEnabled?: boolean;
@@ -24,24 +25,36 @@ export const SecretInput: React.FunctionComponent<TsecretInputProps> = ({
   disabled = false,
   focusOnEnabled = false,
   errorMessage = "",
+  placeholder = "",
   onChange,
   onBlur,
 }) => {
-  console.log("--->", isValid);
   const [id] = useState(uuid());
+  const [opacity, setOpacity] = useState(0);
   const [inputType, setInputType] = useState<TSecureType>("password");
   const ref = createRef<HTMLInputElement>();
+
+  useEffect(() => {
+    if (!placeholder || (placeholder && value)) {
+      setOpacity(100);
+    } else {
+      setOpacity(0);
+    }
+  }, [value, placeholder, setOpacity]);
 
   useEffect(() => {
     if (ref.current && disabled === false && focusOnEnabled) {
       ref.current.focus();
     }
-    console.log("-----> effect");
   }, [disabled, focusOnEnabled, ref]);
 
   return (
     <div className={`mt-2 select-none${isValid === false ? errorStyle : ""}`}>
-      <label htmlFor={id}>{label}</label>
+      <label
+        htmlFor={id}
+        className={`w-full transition-opacity duration-700 opacity-${opacity}`}>
+        {label}
+      </label>
       <div className="relative flex">
         <TogglePasswordType
           disabled={disabled}
@@ -52,6 +65,7 @@ export const SecretInput: React.FunctionComponent<TsecretInputProps> = ({
           ref={ref}
           disabled={disabled}
           id={id}
+          placeholder={placeholder}
           type={inputType}
           className="w-full pl-10"
           value={value}

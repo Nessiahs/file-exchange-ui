@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { errorStyle } from "../../../config/classNames";
 import { uuid } from "../../../utils/uuid";
 import { ValidIndicator } from "../ValidIndicator";
@@ -23,10 +23,23 @@ export const Input: React.FunctionComponent<TInputProps> = ({
   onBlur,
 }) => {
   const [id] = useState(uuid());
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    if (!placeholder || (placeholder && value)) {
+      setOpacity(100);
+    } else {
+      setOpacity(0);
+    }
+  }, [value, placeholder, setOpacity]);
 
   return (
     <div className={`mt-2 p-1${isValid === false ? errorStyle : ""}`}>
-      <label htmlFor={id}>{label}</label>
+      <label
+        htmlFor={id}
+        className={`w-full transition-opacity duration-700 opacity-${opacity}`}>
+        {label}
+      </label>
       <div className="flex">
         <input
           id={id}

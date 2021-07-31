@@ -77,6 +77,7 @@ export const CreateUser: React.FunctionComponent<TCreateUserProps> = ({
           isValid={isPasswordValid}
           focusOnEnabled={true}
           label="Passwort"
+          placeholder="Password"
           helpText="min 8 Zeichen und ein Großbuchstabe und eine Zahl"
         />
 
@@ -88,6 +89,7 @@ export const CreateUser: React.FunctionComponent<TCreateUserProps> = ({
           focusOnEnabled={true}
           errorMessage="Passörter stimmen nicht überein"
           label="Passwort wiederholen"
+          placeholder="Passwort wiederholen"
         />
         <div className="mt-2">
           <CreateUserContext.Provider

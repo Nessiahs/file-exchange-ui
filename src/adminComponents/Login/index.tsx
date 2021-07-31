@@ -1,5 +1,7 @@
 import React from "react";
 import { Progress } from "../../components/Progress";
+import { Input } from "../form/Input";
+import { SecretInput } from "../form/SecretInput";
 import { useLoginComponent } from "./useLoginComponent";
 
 type TLoginProps = {
@@ -12,8 +14,7 @@ export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
     email,
     password,
     isDisabled,
-    emailOpacity,
-    passwordOpacity,
+
     isValidEmail,
     formClassName,
     onSubmit,
@@ -26,40 +27,28 @@ export const Login: React.FunctionComponent<TLoginProps> = ({ hideLogin }) => {
     return <Progress message="Anmeldung" />;
   }
 
-  const labelClassName = "w-full transition-opacity duration-700 opacity-";
   return (
     <div className={`w-96 border rounded mx-auto p-2 mt-10 ${formClassName}`}>
       <form onSubmit={onSubmit}>
         <div className="font-bold text-lg">Login</div>
-        <div>
-          <label className={labelClassName + emailOpacity}>
-            Benutzername <span className="text-xs">(Email-Adresse)</span>
-          </label>
-          <input
-            className="w-full"
-            placeholder="example@example.com"
-            value={email}
-            type="text"
-            onChange={onEmailChange}
-            onBlur={validateEmail}
-          />
-          <div
-            className={`text-red-800 transition-opacity duration-700 text-xs py-1 opacity-${
-              isValidEmail ? "0" : "100"
-            }`}>
-            Bitte gültige Email eingeben!!
-          </div>
-        </div>
-        <div>
-          <label className={labelClassName + passwordOpacity}>Passwort</label>
-          <input
-            placeholder="Password"
-            className="w-full"
-            type="password"
-            value={password}
-            onChange={onPasswordChange}
-          />
-        </div>
+
+        <Input
+          label="Email"
+          placeholder="example@example.com"
+          value={email}
+          onChange={onEmailChange}
+          onBlur={validateEmail}
+          isValid={isValidEmail}
+          errorMessage="Bitte gültige Email eingeben!!"
+        />
+
+        <SecretInput
+          placeholder="Password"
+          label="Password"
+          onChange={onPasswordChange}
+          value={password}
+        />
+
         <div className="text-center mt-2">
           <button type="submit" className="w-full ml-0" disabled={isDisabled}>
             Login
