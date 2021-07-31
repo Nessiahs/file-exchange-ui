@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { emailCheck } from "../../config/checks";
 import { TCredentials, useLogin } from "../../hooks/useLogin";
+import { emailCheck } from "../../utils/vaidators";
 
 const defaultFormClassName = "border-gray-500";
 const errorFormClassName = "border-red-800 text-red-800 bg-red-400";

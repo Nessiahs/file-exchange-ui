@@ -1,6 +1,6 @@
 import { RouteComponentProps, useNavigate } from "@reach/router";
 import React from "react";
-import { AddButton } from "../../adminComponents/AddButton";
+import { AddButton } from "../../adminComponents/buttons/AddButton";
 import { PageHeader } from "../../adminComponents/PageHeader";
 import { Tile } from "../../adminComponents/Tile";
 import { JobList } from "../../components/JobList";

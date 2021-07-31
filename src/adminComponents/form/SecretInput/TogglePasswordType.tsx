@@ -2,18 +2,20 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-type TTogglePasswordTypeProps = {
-  type: "text" | "password";
+export type TSecureType = "text" | "password";
+
+export type TTogglePasswordTypeProps = {
+  type: TSecureType;
   disabled?: boolean;
-  toggleType: (type: "text" | "password") => void;
+  toggleType: (type: TSecureType) => void;
 };
 export const TogglePasswordType: React.FunctionComponent<TTogglePasswordTypeProps> =
   ({ type, disabled, toggleType }) => {
     return (
       <div
-        className={`border border-gray-500 border-r-0 bg-white w-10 relative cursor-pointer${
+        className={`absolute left-0  border-r-0 bg-transparent h-10 w-10 cursor-pointer${
           disabled ? " opacity-50" : ""
-        }`}
+        } `}
         onClick={() => {
           toggleType(type === "password" ? "text" : "password");
         }}>

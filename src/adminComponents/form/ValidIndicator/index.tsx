@@ -3,12 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 type TValidIndicatorProps = {
-  isValid: boolean | null;
+  isValid?: boolean | null;
 };
 
 export const ValidIndicator: React.FunctionComponent<TValidIndicatorProps> = ({
   isValid,
 }) => {
+  if (typeof isValid === "undefined") {
+    return null;
+  }
+
   let content = null;
 
   let color = "text-green-800";

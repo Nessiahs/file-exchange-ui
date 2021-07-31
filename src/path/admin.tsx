@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Login } from "../adminComponents/Login";
 import { Navigation } from "../adminComponents/Navigation";
 import { useIsLoggedIn } from "../hooks/useIsLogedIn";
-import { getId } from "../utils/getId";
+import { uuid } from "../utils/uuid";
 
 type TAdminContext = {
   isAdmin: 0 | 1;
@@ -18,7 +18,7 @@ export const Admin: React.FunctionComponent<RouteComponentProps> = ({
   children,
 }) => {
   const location = useLocation();
-  const [renderId, setRenderId] = useState(getId());
+  const [renderId, setRenderId] = useState(uuid());
   const { isLoggedIn, isAdmin, id } = useIsLoggedIn(
     location.pathname,
     renderId
@@ -38,7 +38,7 @@ export const Admin: React.FunctionComponent<RouteComponentProps> = ({
     return (
       <Login
         hideLogin={(l: boolean) => {
-          setRenderId(getId());
+          setRenderId(uuid());
           setHide(l);
         }}
       />

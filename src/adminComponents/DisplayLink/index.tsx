@@ -1,7 +1,7 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { CopyButton } from "../CopyButton";
+import { CopyButton } from "../buttons/CopyButton";
 
 type TDisplayLinkProps = {
   link: string;

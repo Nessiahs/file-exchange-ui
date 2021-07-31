@@ -2,7 +2,7 @@ import { RouteComponentProps } from "@reach/router";
 import React, { useState } from "react";
 import { TJobType } from "../../hooks/useJobDetail";
 import { useVerifyToken } from "../../hooks/useVerifyToken";
-import { uuid } from "../../services/uuid";
+import { uuid } from "../../utils/uuid";
 import { SecretInput } from "../SecretInput";
 interface IVerifyProps extends RouteComponentProps {
   token?: string;

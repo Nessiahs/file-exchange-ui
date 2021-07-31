@@ -1,5 +1,5 @@
 import React from "react";
-import { isIpAddress } from "../../config/checks";
+import { isIpAddress } from "../../utils/vaidators";
 import { BadgeInput } from "../BadgeInput";
 import { LabeledCheckbox } from "../LabeledCheckbox";
 import { ToggleTile } from "../ToggleTile";

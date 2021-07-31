@@ -1,7 +1,7 @@
 import { useLocation } from "@reach/router";
 import React from "react";
 import { TJobType } from "../../hooks/useJobDetail";
-import { CopyButton } from "../CopyButton";
+import { CopyButton } from "../buttons/CopyButton";
 type TJobLinkProps = {
   token: string;
   jobType: TJobType;

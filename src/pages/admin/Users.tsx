@@ -1,14 +1,14 @@
 import { RouteComponentProps } from "@reach/router";
 import React, { useState } from "react";
-import { AddButton } from "../../adminComponents/AddButton";
 import { Backdrop } from "../../adminComponents/Backdrop";
+import { AddButton } from "../../adminComponents/buttons/AddButton";
 import { CreateUser } from "../../adminComponents/CreateUser";
 import { CreateUserButtons } from "../../adminComponents/CreateUser/CreateUserButtons";
 import { Modal } from "../../adminComponents/Modal";
 import { PageHeader } from "../../adminComponents/PageHeader";
 import { Tile } from "../../adminComponents/Tile";
 import { UserList } from "../../adminComponents/UserList";
-import { uuid } from "../../services/uuid";
+import { uuid } from "../../utils/uuid";
 
 export const Users: React.FunctionComponent<RouteComponentProps> = () => {
   const [addUser, setAddUser] = useState(false);

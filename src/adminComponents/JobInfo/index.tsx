@@ -2,7 +2,7 @@ import React from "react";
 import { useSetCreatedBy } from "../../hooks/adminContext/useSetCreatedBy";
 import { TJob } from "../../hooks/useJobDetail";
 import { getFormattedTimeByZone } from "../../utils/dateUtils";
-import { CopyButton } from "../CopyButton";
+import { CopyButton } from "../buttons/CopyButton";
 import { ExpireInfo } from "../ExpireInfo";
 import { JobLink } from "../JobLink";
 import { JobTypeIcon } from "../JobTypeIcon";

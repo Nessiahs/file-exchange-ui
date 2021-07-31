@@ -6,7 +6,7 @@ import { Tile } from "../../adminComponents/Tile";
 import { DragDropUpload } from "../../components/DragDropUpload";
 import { JobFile } from "../../components/JobFile";
 import { useJobDetail } from "../../hooks/useJobDetail";
-import { uuid } from "../../services/uuid";
+import { uuid } from "../../utils/uuid";
 
 export const DownloadsDetails: React.FunctionComponent<RouteComponentProps> =
   () => {

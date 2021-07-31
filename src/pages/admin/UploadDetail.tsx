@@ -5,7 +5,7 @@ import { PageHeader } from "../../adminComponents/PageHeader";
 import { Tile } from "../../adminComponents/Tile";
 import { JobFile } from "../../components/JobFile";
 import { useJobDetail } from "../../hooks/useJobDetail";
-import { uuid } from "../../services/uuid";
+import { uuid } from "../../utils/uuid";
 
 export const UploadDetail: React.FunctionComponent<RouteComponentProps> =
   () => {
